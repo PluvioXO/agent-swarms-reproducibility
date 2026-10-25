@@ -49,3 +49,12 @@ The 176 evaluation cells comprise 28 single-worker controls and 148 wider cells.
 The paper appendix defines the paired task-bootstrap estimands. Repetitions, budgets, and configurations remain within sampled task clusters. Some studies use strata. Saved confidence intervals are present in the JSON metadata; the offline verifier checks point estimates, not those intervals. The original ZebraLogic policy contrast uses a calibration-selected fixed-width comparator, while confirmation uses communicating fixed four at the two higher ceilings. PlanBench's degenerate stratified interval has a separate unstratified sensitivity interval.
 
 The separate 8,400-trial controlled study has no rows in this snapshot. It must not be added to these totals or described as verified by this script.
+
+## Graph-colouring operational accounting
+
+| Model | Attempts | Known reported tokens | Unknown-usage calls | Known cost (USD) |
+| --- | ---: | ---: | ---: | ---: |
+| Luna | 7,260 | 3,588,914 | 32 | 0.6709 |
+| Muse Spark | 7,568 | 5,752,449 | 327 | 1.0115 |
+
+Actual total tokens remain unknown for both models; Muse also has missing responses and unknown total cost. The attempt ledger is separate from mean retained trial debit. Seven Muse evaluation trials at the 8,192 ceiling are budget-violation failures under a post-start continuation amendment. Their `passed=0` values are operational zeros rather than direct evidence of reasoning errors. The retained-ledger ceiling check above does not override those labels or guarantee that each provider call stayed within its allocation. [graph-details.json](../evidence/graph-details.json) preserves the original accounting summaries, amendment, and seven failure keys with reported call allocations and token use. Graph-size accuracy counts can be recovered by joining its task IDs to the trial CSV.

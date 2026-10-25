@@ -14,6 +14,8 @@ Calibration and evaluation tasks are distinct within the original studies. BigCo
 
 ## Tasks and final scoring
 
+Graph colouring is a custom study, separate from ZebraLogic and the official Reasoning Gym distribution. Both models use the same 100 fixed graphs: 20 per size stratum. With three configurations, two ceilings, and two repetitions, this gives 1,200 evaluation trials per model (200 per cell). Separate 30-trial single-worker pilots at 8,192 scored 30/30 for both models and were reported without tuning the evaluation. The shared graphs, witnesses, and original hashes are in [graph-details.json](../evidence/graph-details.json).
+
 | Family | Task source and final criterion |
 | --- | --- |
 | BigCodeBench | Model-integrated final code; saved sandbox test result, without hidden-test feedback to workers. |

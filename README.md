@@ -2,7 +2,7 @@
 
 Key reproducibility details for **Evaluating Agent Swarms: Token Budgets, Active Workers, and Baseline Choice**, by Maximilian Nicholson and Ayda Yazdani.
 
-The `reproducibility-v1.1` snapshot covers **eleven complementary studies: 26,648 retained trials** (6,272 calibration and 20,376 evaluation), with 316 configuration cells. The separate **8,400-trial controlled study is not included**; its methods, results, and trial records remain pending.
+The `reproducibility-v1.2` snapshot covers **eleven complementary studies: 26,648 retained trials** (6,272 calibration and 20,376 evaluation), with 316 configuration cells. The separate **8,400-trial controlled study is not included**; its methods, results, and trial records remain pending.
 
 ## Contents
 
@@ -14,6 +14,7 @@ The `reproducibility-v1.1` snapshot covers **eleven complementary studies: 26,64
 | [evidence/trials.csv](evidence/trials.csv) | All 26,648 normalized retained trials. |
 | [evidence/cell-summary.json](evidence/cell-summary.json) | Cell aggregates, effect estimates, and saved interval metadata. |
 | [evidence/provenance.json](evidence/provenance.json) | Original source-file hashes and snapshot scope. |
+| [evidence/graph-details.json](evidence/graph-details.json) | The 100 shared graphs, witnesses, original hashes, attempt accounting, and seven operational-failure trial keys. |
 | [verify_results.py](verify_results.py) | Offline aggregate and point-estimate checks. |
 
 ## Verify
@@ -29,4 +30,4 @@ Run Python without `-O`, because the verifier uses assertions. It checks trial k
 
 This concise package supports review of saved outcomes. It does not recompute confidence intervals, validate original graders, or provide complete inference replay or attempted-call accounting. Full archives, provider payloads, and historical reports are not included. The current PDF remains a working draft pending the controlled-study methods and results.
 
-When citing these materials, give the paper title, authors, repository URL, and `reproducibility-v1.1` tag or exact commit.
+When citing these materials, give the paper title, authors, repository URL, and `reproducibility-v1.2` tag or exact commit.
