@@ -2,6 +2,8 @@
 
 The normalized CSV contains completed retained scientific trials from eleven studies. It excludes pilots, smoke checks, imported full-benchmark baselines, incomplete studies, and one superseded MBPP+ Muse evaluation row. The broader source exports are outside this concise package.
 
+Excluded operational checks include 30 graph-colouring pilot trials per model, 60 Countdown pilot trials, 60 PlanBench pilot trials, and 48 BBEH pilot trials. Original ZebraLogic has 50 pilot and nine smoke trials; confirmation has 33 smoke trials. BigCodeBench and MBPP+ smoke records are also excluded. Some pilot truncation warnings were acknowledged before evaluation continued on the frozen grids. One MBPP+ Muse evaluation row marked `analysis_included=false` is superseded. These checks and exclusions are separate from the retained calibration/evaluation inventory below.
+
 ## Study inventory
 
 | Study identifier | Calibration trials | Evaluation trials |

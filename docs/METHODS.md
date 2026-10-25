@@ -1,6 +1,6 @@
 # Methods for the Eleven Complementary Studies
 
-These notes summarize the current paper's appendices. They describe the retained experiments, not the separate 8,400-trial controlled study.
+These notes hold the extended protocol and resampling details moved from the paper's appendices. They describe the eleven complementary studies. [CONTROLLED-STUDY.md](CONTROLLED-STUDY.md) separately records the supplied controlled-study summary and its missing information.
 
 ## Design and models
 
@@ -11,6 +11,8 @@ Graph colouring uses ceilings 4,096/8,192; Countdown, BBEH, and PlanBench use 8,
 BigCodeBench Luna records `gpt-5.6-luna`; later Luna studies request `openai/gpt-6-luna` through OpenRouter, generally with low reasoning and requested Flex service. Muse records `meta/muse-spark-1.3-contributor`. Sampling and routing vary by study; the graph-colouring Muse runner uses default reasoning and no requested service tier. These are not one experiment with uniform model/provider settings. Activation is recorded only for the four programming studies.
 
 Calibration and evaluation tasks are distinct within the original studies. BigCodeBench uses 32 tasks per split, MBPP+ 16 per split, and original ZebraLogic 32 calibration/64 evaluation. Every non-MBPP+ cell has two repetitions per task; MBPP+ has one. The graph studies reuse tasks across models.
+
+[study-configs.json](../evidence/study-configs.json) preserves the configuration objects embedded in the supplied exports for seven studies, including recorded sampling, retry, allocation, dependency, and bootstrap fields. The compact exports do not embed complete configuration objects for the four programming studies; settings are not inferred for them. Referenced runner or prompt files may be outside this concise package. BigCodeBench sampling records differ between Luna and Muse; a stored Muse Flex label does not establish that Flex was requested or served. Programming activation uses the saved `active_N` field, not API concurrency.
 
 ## Tasks and final scoring
 
@@ -41,3 +43,17 @@ Bootstrap sampling retains each task's configurations and repetitions together. 
 PlanBench's singleton seven-object stratum yields a degenerate [0.25, 0.25] percentage-point communication interval. The post-hoc unstratified sensitivity uses 50,000 paired draws, seed 20260929, giving [0.00, 0.75]. Intervals are study-specific; there is no pooled meta-analysis or cross-study multiplicity correction. Saved intervals are metadata, not recomputed by the verifier.
 
 Tokens are recorded charges/debits, including estimates or conservative unknown-usage charges where applicable. They do not measure exact compute or all attempted calls. Original ZebraLogic had protocol/retry amendments and seven abandoned whole-trial attempts; confirmation added an upstream-503 retry amendment after 1,496 trials. The studies are not uniformly preregistered. Pilots, smoke checks, imported baselines, incomplete studies, and one superseded MBPP+ Muse row are excluded; see [DATA.md](DATA.md) and the paper for scope and accounting.
+
+All 176 evaluation cells are readable in [EVALUATION-CELLS.md](EVALUATION-CELLS.md), with the original precision preserved separately in `evidence/cell-summary.json`.
+
+## Reporting checklist
+
+| Observed ambiguity | Report with the score | Comparison enabled |
+| --- | --- | --- |
+| Same ceiling, different use | Nominal cap, realized ledger, retries, unknown usage, cap violations. | Cap-constrained performance and efficiency at matched resources. |
+| Width changes execution | Requested/active workers, per-stage allowances, skips and truncation. | Participation and feasibility changes. |
+| Multiple sources of gain | Peer context, integrator, selector and grader access. | Independent search and the tested communication change. |
+| Policy gain depends on control | Frozen mapping, selection data, fresh tasks, single-worker and fixed-width controls. | Adaptation against a competitive deployment rule. |
+| Repeated tasks and sparse strata | Task counts, paired resampling, stratum sizes, amendments. | Interpretation without treating repeated runs as independent evidence. |
+
+This checklist is derived from the audit; it has not been independently validated as a new evaluation metric or standard.

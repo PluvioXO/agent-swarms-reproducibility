@@ -1,0 +1,383 @@
+% !TeX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage{aes}
+\usepackage{amsmath,amssymb,tabularx,array}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title[Evaluating Agent Swarms]{Evaluating Agent Swarms: Token Budgets, Active Workers, and Baseline Choice}
+\aesauthor[affil={1,2}]{Maximilian Nicholson}
+\aesauthor[affil={1}]{Ayda Yazdani}
+\aesaffiliation{1}{University of Bath}
+\aesaffiliation{2}{Amazon}
+\aesemails{\aesemail{mn866@bath.ac.uk}\quad\aesemail{ay582@bath.ac.uk}}
+\aeskeywords{Agent evaluation; Multi-agent systems; Test-time compute; Token budgets; Resource allocation; Coordination; Reliability; Reproducibility}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Evaluating an agent swarm requires distinguishing the effects of increasing
+the total token budget, dividing a fixed ceiling, and changing coordination.
+We examine these comparisons in 8,400 controlled trials on fresh arithmetic
+and graph-colouring tasks. At 4,096 completion tokens per worker, increasing
+independent width from one to four improves accuracy by 16.0 percentage
+points on both families while the total ceiling quadruples. Splitting a
+fixed 4,096-token completion ceiling instead lowers graph accuracy from
+56.0\% to 18.5\%; the arithmetic change is inconclusive. The primary comparisons
+do not establish an accuracy advantage over a sequential control matched
+on scheduled calls and nominal token ceiling. Ring communication provides no
+consistent gain. Eleven complementary scaling studies add 20,376 held-out
+trials across seven task families, including a fresh-task sixteen-worker
+confirmation that does not establish superiority over fixed-four execution.
+Candidate and request audits show that finding a valid answer after an initial
+failure depends on the token allowance. They also reveal incomplete worker
+activation and 97 controlled-study attempts with unknown usage.
+The findings show how resource controls, output selection, and execution
+records qualify claims about agent scaling. They support evaluating specific
+allocation policies; equal-realized-compute advantages and general scaling
+laws remain unestablished.
+\end{abstract}
+
+\begin{quote}
+\small
+``All happy families are alike; each unhappy family is unhappy in its own way.''
+---Leo Tolstoy, \emph{Anna Karenina} \citep{tolstoy2014}.
+
+\emph{Adapted to this study:} All successful swarms share a valid outcome;
+unsuccessful swarms fail in different ways.
+\end{quote}
+
+\section{Introduction}
+Adding agents changes more than the number of contributors. Under a shared
+token ceiling, wider systems receive smaller per-agent allowances, generate
+more candidates, and may use different amounts of the available budget; where this may be tokens, time or reasoning.
+A nominal worker can also fail to become active. An observed accuracy difference
+therefore measures the deployed allocation and selection procedure, not an
+isolated effect of collaboration.
+
+This paper asks what fixed budget worker-count evaluations can establish
+about task success, resource efficiency, and communication. We examine
+8,400 controlled trials on fresh arithmetic and graph-colouring tasks,
+alongside eleven complementary studies on programming, logical reasoning,
+graph colouring, arithmetic search, and planning. Three distinctions organize the
+analysis: a ceiling versus realized token use; requested versus active workers;
+and improvement over one worker versus improvement over a strong fixed-width
+baseline. These distinctions matter even when task grading is deterministic.
+
+Our contribution combines controlled allocation and coordination comparisons
+with an empirical audit of saved configuration grids, including negative
+results, feasibility diagnostics, and a fresh-task policy confirmation. We provide all 176 held-out cells in
+the repository, retain repeated tasks as statistical clusters, and make the limits of
+the token ledger explicit. The resulting reporting recommendations are
+derived from the audit; they have not themselves been validated as an
+evaluation standard.
+
+\paragraph{Relation to prior work.}
+Repeated sampling separates solution coverage from successful candidate
+selection \citep{brown2024monkeys}; self-consistency and debate provide
+different aggregation and interaction mechanisms
+\citep{wang2023selfconsistency,du2024debate}. Effective inference allocation
+depends on task difficulty \citep{snell2024compute}, and controlled agent-system
+studies already show dependence on architecture and task structure
+\citep{kim2025agents}. We do not claim task dependence as a new principle.
+Shared-workspace communication can help discovery tasks given sufficient
+resources and feedback \citep{park2026discovery}; our single-round ring
+comparison tests a narrower intervention. Failure taxonomies
+\citep{cemri2025failures} complement our resource and activation diagnostics,
+which do not by themselves identify a causal failure mechanism.
+
+\section{Evaluation Design}
+\label{sec:design}
+Figure~\ref{fig:worker-schedules} shows the controlled schedules and token
+allowances. The complementary studies below retain their original allocations
+and selection protocols.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/worker-schedules.png}
+\caption{Worker scaling and controlled schedules. $N$ denotes parallel width,
+$d$ the per-worker completion allowance, and $B=Nd$ the total completion
+ceiling. All controlled schedules execute $2N$ calls, each allowed $d/2$
+completion tokens. The controlled study tests $N=1,2,4$; earlier studies extend through
+$N=16$. Widths beyond sixteen are schematic.}
+\label{fig:worker-schedules}
+\end{figure}
+
+\paragraph{Controlled allocation comparisons.}
+The controlled study comprises 8,400 trials on fresh arithmetic and
+graph-colouring tasks at widths 1, 2, and 4. Fixing $d$ increases $B$ with
+width; fixing $B$ reduces each worker's allowance. Independent workers revise
+their own drafts; ring workers receive predecessor information. The
+sequential control uses one worker for the same $2N$ scheduled calls and
+nominal completion ceiling, with prior-candidate and verifier feedback.
+All scheduled calls execute, and the first valid candidate is retained.
+The repository contains the supplied protocol summary and states the
+coverage of the available experimental records.
+
+\paragraph{Evidence and task coverage.}
+Table~\ref{tab:inventory} summarizes the eleven complementary studies. Public task sources
+are BigCodeBench \citep{zhuo2024bigcodebench}, MBPP with EvalPlus tests
+\citep{austin2021mbpp,liu2023evalplus}, ZebraLogic \citep{lin2025zebralogic},
+BBEH \citep{kazemi2025bbeh}, and PlanBench \citep{valmeekam2023planbench}.
+Graph-colouring and Countdown instances are generated algorithmically and
+scored by deterministic constraint checks; graph generation is inspired by
+Reasoning Gym \citep{stojanovski2025gym}.
+These are fixed subsets or adaptations, not full-benchmark leaderboard scores.
+Luna 5.6, Luna 6, and Muse Contributor are recorded model identifiers;
+they are not interchangeable model versions (Appendix~\ref{app:protocol}).
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}Xcrrr@{}}
+\toprule
+Task family / study & Models & Studies & Tasks$^*$ & Eval. trials\\
+\midrule
+BigCodeBench & L5.6, M & 2 & 32 & 3,456\\
+MBPP+ & L6, M & 2 & 16 & 864\\
+ZebraLogic original & L6 & 1 & 64 & 3,456\\
+ZebraLogic confirmation & L6 & 1 & 300 & 6,600\\
+Custom graph colouring & L6, M & 2 & 100 & 2,400\\
+Custom Countdown & L6 & 1 & 100 & 1,200\\
+BBEH subset & L6 & 1 & 100 & 1,200\\
+PlanBench subset & L6 & 1 & 100 & 1,200\\
+\midrule
+Total & & 11 & & 20,376\\
+\bottomrule
+\end{tabularx}
+\caption{Completed evaluation evidence. L5.6/L6: Luna 5.6/6; M: Muse Spark
+Contributor. $^*$Distinct evaluation tasks per study; task IDs can overlap
+between model studies. MBPP+ uses one repetition per task and configuration;
+all others use two. An additional 6,272 calibration trials give 26,648 total.
+Pilot, smoke, imported baseline, incomplete, and superseded records are excluded.}
+\label{tab:inventory}
+\end{table}
+
+\paragraph{Interventions and selection.}
+The original programming and ZebraLogic grids evaluate $N\in\{1,2,4,8,16\}$
+at three ceilings. The five smaller diagnostic studies compare one and four
+workers at two ceilings. The confirmation evaluates a transferred policy
+and its controls. Workers draft and revise; ring revision adds a predecessor's
+draft to the revision context. Independent revision omits that peer draft.
+Both conditions can still share a final integrator in the programming and
+ZebraLogic workflows. Thus the contrast does not remove every form of
+information sharing.
+
+Graph colouring, Countdown, and PlanBench select a locally valid revision
+when available. Their width effects include verifier-assisted parallel search.
+BBEH instead uses gold-blind plurality with deterministic tie breaking.
+Programming and ZebraLogic use a model integrator, with final grading outside
+the generation loop. Appendix~\ref{app:protocol} records allocations and graders.
+
+\paragraph{Outcomes and resource accounting.}
+For a complementary study, nominal ceiling $B$, width $N$, and revision condition $c$, let
+$\widehat S_{N,c}(B)$ denote mean final-task success and $\overline T_{N,c}(B)$
+mean recorded tokens. We compare each wider cell to its shared $N=1$ control:
+\begin{equation}
+\Delta S=100\bigl(\widehat S_{N,c}(B)-\widehat S_1(B)\bigr),\qquad
+R_T=\frac{\overline T_{N,c}(B)}{\overline T_1(B)}.
+\label{eq:contrasts}
+\end{equation}
+$\Delta S$ is in percentage points (pp). $T$ retains each study's charged-token
+or retained-debit convention, including conservative debits where applicable.
+It is not a complete ledger of all attempted calls or provider compute.
+Equal ceilings do not imply equal realized resources. Original calibration
+also contains disclosed accounting overruns; nominal ceilings are not a
+claim of universally verified hard caps (Appendix~\ref{app:accounting}).
+These charged-token and retained-debit ceilings include prompt accounting;
+Figure~\ref{fig:worker-schedules} instead specifies a completion-token ceiling
+for the controlled schedules.
+
+\paragraph{Uncertainty and analysis units.}
+Cells share tasks, repetitions, and controls. Paired bootstrap intervals
+resample whole tasks, keeping their observations together and using the
+study-specific strata (Appendix~\ref{app:inference}); detailed resampling
+settings are recorded in the repository.
+The 26,648 trials are not independent task samples. Configuration counts
+describe the evaluated grids; they do not estimate a population frequency
+or constitute 148 independent hypothesis tests. Reported 95\% intervals are
+study-specific and are not adjusted for cross-study multiplicity.
+
+\section{Findings and Their Evaluation Consequences}
+\label{sec:findings}
+
+\subsection{Controlled allocation and coordination}
+The controlled comparisons separate increasing the total allowance from
+dividing a fixed ceiling (Table~\ref{tab:controlled-summary}). Increasing
+independent width at a fixed per-worker allowance improves accuracy while
+expanding the total ceiling. Under a fixed total ceiling, graph accuracy
+falls sharply; the arithmetic comparison is inconclusive. These are
+comparisons of allocation rules, not evidence of equal-realized-compute gains.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}XYY@{}}
+\toprule
+Independent width 1 to 4 & Arithmetic & Graph colouring\\
+\midrule
+Fixed per-worker allowance $d=4{,}096$ & $+16.0$ pp & $+16.0$ pp\\
+\addlinespace[3pt]
+Fixed total ceiling $B=4{,}096$ & Inconclusive & $56.0\%\to18.5\%$\\
+\bottomrule
+\end{tabularx}
+\caption{Controlled-study summary. In the first row, the total ceiling
+quadruples. The repository documents the coverage of the supporting
+configuration records and uncertainty analysis.}
+\label{tab:controlled-summary}
+\end{table}
+
+The primary comparisons do not establish an accuracy advantage over the
+sequential control matched on scheduled calls and nominal ceiling. Ring
+communication provides no consistent gain. The candidate audit reports that
+valid-answer recovery after an initial failure depends on the token
+allowance. Request records include 97 attempts with unknown usage, limiting
+exact resource accounting. The repository provides the controlled-study
+audit summary and states its evidence coverage.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/main-evidence.pdf}
+\caption{Three views of the saved evaluation evidence. (A) Fractions of wider
+cells with lower, equal, or higher accuracy than matched-ceiling $N=1$;
+every wider cell uses more recorded tokens ($n=148$ configurations, not
+independent samples). (B) Four-worker accuracy
+effects, pooled over revision conditions, in the five two-ceiling diagnostic
+studies. (C) Recorded activation, pooled over revision conditions, in the four
+programming studies that report it. Complete cell values are in the versioned
+repository; paired communication intervals appear in Appendix~\ref{app:inference}.}
+\label{fig:evidence}
+\end{figure}
+
+\subsection{A shared ceiling does not equalize resource use}
+All 148 wider held-out cells use more recorded tokens than their
+matched-ceiling control. Accuracy is lower in 75, tied in 24, and higher in
+49 (Figure~\ref{fig:evidence}A). Thus 99 cells have higher recorded token use
+without a higher mean success rate. Programming contributes 96 wider cells,
+81 of them flat or worse; the overall count reflects unequal grid sizes and
+must not be read as a benchmark-balanced effect.
+
+The finding is a joint statement about observed accuracy and the recorded
+resource ledger. It does not establish population-level dominance for every
+cell, nor does it compare policies at equal realized expenditure. For
+example, independent four-worker Countdown gains 9.5--17.0 pp, but uses
+2.77--3.85 times the control's recorded tokens. Reporting only accuracy at
+the shared ceiling would omit that resource difference.
+
+\subsection{Width can cross a feasibility boundary}
+On the PlanBench subset, independent four-worker accuracy is 0\% at
+$B=8{,}192$, versus 95\% for one worker. At $B=16{,}384$, the same widths
+score 100\% and 89.5\%. Their paired differences are $-95.0$ pp
+($[-98.0,-91.5]$) and $+10.5$ pp ($[6.0,15.5]$). Four-worker length-limit
+finishes fall from 99.94\% to 0.19\% of retained stage calls.
+The higher-ceiling gain uses 4.06 times the control's retained debit.
+
+BBEH provides a complementary case without verifier-assisted selection:
+ring four-worker accuracy changes from a 6.5-pp loss ($[-11.5,-2.0]$) to
+a 4.5-pp gain ($[0.5,9.0]$) when its ceiling doubles. Conversely,
+graph-colouring four-worker cells lose 7.5--77.5 pp across both models and
+ceilings. Muse's graph-colouring scores include seven operational failure
+zeros at the higher ceiling (Appendix~\ref{app:accounting}).
+The appropriate interpretation is conditional feasibility under
+the tested allocation. Width and per-worker allowance change together;
+lower truncation accompanies the reversals but is not isolated as their cause.
+
+Requested width also differs from recorded participation
+(Figure~\ref{fig:evidence}C). Pooling revision conditions, BigCodeBench Muse's
+sixteen requested workers average 7.3\% activation at the smallest ceiling, rising to
+45.3\% and 93.5\% at the next two ceilings. A worker-count label therefore
+does not identify a stable amount of realized participation. This diagnostic
+does not establish that activation alone explains accuracy.
+
+\subsection{Sampling gains do not establish communication gains}
+Countdown improves with independent workers while ring revision reduces
+average accuracy by 5.0 pp ($[-8.5,-1.75]$). Luna graph colouring also has a
+negative ring contrast, $-2.0$ pp ($[-4.0,-0.25]$). Most other communication
+intervals include or touch zero (Appendix~\ref{app:inference}). PlanBench's
+saved stratified interval is degenerate because its only differing task
+occupies a singleton stratum; an unstratified sensitivity interval spans
+$[0.0,0.75]$ pp. It is not evidence of general communication superiority.
+
+These contrasts concern the tested ring intervention. Verifier-assisted
+candidate selection, model integration, and peer exchange are distinct
+mechanisms. A wider system's gain cannot be assigned to collaboration merely
+because multiple workers contributed candidates.
+
+\subsection{Fresh tasks require a strong baseline as well}
+The original, post-start-amended ZebraLogic study reports a selected-policy
+gain of 3.78 pp ($[1.30,6.51]$) against its calibration-selected fixed-width
+baseline, which selected one worker. The confirmation transfers the
+communicating $4/8/16$ policy without refitting to 300 unused puzzles and
+compares it with communicating fixed four. Averaged over the two higher
+ceilings, adaptive minus fixed-four accuracy is $+0.92$ pp
+($[-0.58,2.50]$).
+
+The original and confirmation contrasts have different comparators and
+cannot be pooled. The confirmation establishes neither superiority nor
+equivalence. Fresh tasks address task reuse, while a competitive fixed-width
+control addresses whether adaptation adds value. Both checks are necessary
+before interpreting a selected allocation rule as an established advantage.
+
+\section{Reporting Implications}
+\label{sec:reporting}
+The audit motivates reporting ceilings and realized use, requested and active
+workers, per-stage allowances, selection and feedback access, comparator
+policies, task counts, and paired uncertainty alongside the final score.
+A structured reporting checklist is provided in the repository. These are
+practical requirements for interpreting this class of comparison, not an
+empirically validated new metric.
+
+
+
+\begin{samepage}
+Further experiments should compare accuracy and realized resource use
+while reporting width, per-worker allowance, selection, and
+feedback access. Frozen adaptive policies should then face both
+single-worker and fixed-width controls on new tasks with matched realized
+resources. A larger ceiling alone is insufficient to make that comparison.
+\end{samepage}
+
+\section{Limitations and Reproducibility}
+The studies are heterogeneous, use unequal grids, and are not replications
+from independent laboratories. Programming samples contain only 16--32
+evaluation tasks per study. Public-task exposure and unknown training
+contamination limit generalization. Deterministic grading does not establish
+that a task subset represents deployed agent work. Most protocols are short
+draft--revision workflows rather than long-horizon, tool-using environments.
+
+Model versions, provider routes, tier verification, and historical accounting
+differ. Usage from lost calls and retry expenditure can be unknown.
+The original ZebraLogic study and confirmation include disclosed operational
+amendments; the evidence is not uniformly preregistered. Several pilot
+truncation warnings were acknowledged before the frozen diagnostic grids
+continued. We retain those failures rather than selecting only feasible cells.
+No scaling exponent, exact compute comparison, latency advantage, or causal
+effect of truncation is established.
+
+The appendices retain essential protocols, interval definitions, and
+interpretation caveats for the eleven complementary studies. Their extended
+methods, recorded configurations, complete evaluation-cell table, saved
+outcomes, provenance hashes, and aggregate verifier are in a versioned public
+repository.\footnote{\url{https://github.com/PluvioXO/agent-swarms-reproducibility}}
+The repository also provides the controlled-study protocol and result
+summary, with an explicit coverage statement for its supporting records.
+The current materials support saved-summary verification, not complete
+inference replay or independent grader validation. No new model runs were performed for this
+reframing.
+
+\section{Conclusion}
+Worker-count comparisons are interpretable only with their allocation,
+participation, selection, and baseline conditions. The controlled study
+separates total-budget expansion from division of a fixed allowance and
+does not establish an advantage over matched sequential execution. The
+complementary studies show that extra workers can consume more recorded
+tokens without improving accuracy, budget changes can reverse width effects,
+and a transferred policy can remain inconclusive against fixed four.
+These findings support evaluation of specific allocation policies;
+equal-realized-compute advantages and general scaling laws remain unestablished.
+
+\clearpage
+\bibliography{references}
+\appendix
+\input{appendix}
+\end{document}

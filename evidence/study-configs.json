@@ -1,0 +1,1021 @@
+{
+  "scope": "Recorded configuration objects for seven of the eleven complementary studies. No controlled-study configuration is supplied or inferred.",
+  "source_files": [
+    {
+      "path": "prism-uploads/completed_experiments_graph_data.json",
+      "sha256": "283ef9532cd220bcf6c16716092db23120f92c219b9ebcccce3045e5e95114ff"
+    },
+    {
+      "path": "prism-uploads/saved_report_graph_data.json",
+      "sha256": "dcb588f283a09dd0f914df414772d3a8d16dfd14f7bcbb2ee15c3b68adfb75a0"
+    }
+  ],
+  "studies": {
+    "zebralogic_luna_scaling": {
+      "manifest_sha256": "3f3939e6a8cdfa4e4fe9a71f4c86b89a1671965a639b50be3f9446b61b228613",
+      "config": {
+        "api_concurrency": 2,
+        "bootstrap_samples": 4000,
+        "bootstrap_seed": 20260926,
+        "calibration_budgets": [
+          8192,
+          16384,
+          32768,
+          65536
+        ],
+        "calibration_widths": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "calls_per_stage_worker": 1,
+        "dataset_revision": "0a473f5a0054835754ed156d5a79c6ce27178bb1",
+        "dataset_sha256": "545cd5cce9c54575c7f74769b8f1250b8bb94f5745519c83b99b8db01f95924d",
+        "evaluation_budgets": [
+          32768,
+          65536,
+          131072
+        ],
+        "evaluation_widths": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "minimum_output_tokens": 256,
+        "model": "openai/gpt-6-luna",
+        "outcome_stop_policy": "never_stop_on_model_score",
+        "packages": {
+          "numpy": "2.5.3",
+          "openai": "2.54.0",
+          "pyarrow": "25.0.1",
+          "python-dotenv": "1.2.3",
+          "tiktoken": "0.14.0"
+        },
+        "pilot_gate": {
+          "former_thresholds": {
+            "max_accuracy": 0.9,
+            "min_accuracy": 0.1,
+            "min_parse_rate": 0.9
+          },
+          "mode": "diagnostic_only"
+        },
+        "primary": "calibration-selected power rule minus best fixed width, averaged over both conditions",
+        "protocol": "zebralogic-luna-flex-scaling-v2",
+        "python": "3.14.2",
+        "reasoning_effort": "low",
+        "repetitions": 2,
+        "seed": 20260926,
+        "service_tier": "flex",
+        "shared_excerpt_tokens": 768,
+        "smoke_gate": {
+          "mode": "diagnostic_only"
+        },
+        "source_sha256": "8cf79ee1d2ff2b30fc836971b9c8a66ce9f8bb13fd4f950d7a0b309d119c0e09",
+        "splits": {
+          "calibration": [
+            "lgp-test-3x2-32",
+            "lgp-test-5x2-20",
+            "lgp-test-2x3-2",
+            "lgp-test-3x3-28",
+            "lgp-test-5x3-36",
+            "lgp-test-3x5-31",
+            "lgp-test-4x3-11",
+            "lgp-test-4x5-7",
+            "lgp-test-5x4-14",
+            "lgp-test-2x4-7",
+            "lgp-test-6x5-10",
+            "lgp-test-3x4-10",
+            "lgp-test-2x5-28",
+            "lgp-test-6x2-22",
+            "lgp-test-6x4-20",
+            "lgp-test-3x6-12",
+            "lgp-test-5x5-34",
+            "lgp-test-5x6-5",
+            "lgp-test-4x6-24",
+            "lgp-test-2x6-19",
+            "lgp-test-4x4-14",
+            "lgp-test-6x3-18",
+            "lgp-test-2x2-24",
+            "lgp-test-4x2-19",
+            "lgp-test-6x6-13",
+            "lgp-test-3x2-18",
+            "lgp-test-5x2-4",
+            "lgp-test-2x3-17",
+            "lgp-test-3x3-17",
+            "lgp-test-5x3-24",
+            "lgp-test-3x5-11",
+            "lgp-test-4x3-27"
+          ],
+          "evaluation": [
+            "lgp-test-3x2-21",
+            "lgp-test-5x2-11",
+            "lgp-test-2x2-28",
+            "lgp-test-3x6-11",
+            "lgp-test-4x6-25",
+            "lgp-test-3x3-0",
+            "lgp-test-4x2-15",
+            "lgp-test-4x4-11",
+            "lgp-test-3x5-28",
+            "lgp-test-6x6-28",
+            "lgp-test-2x6-29",
+            "lgp-test-3x4-19",
+            "lgp-test-5x5-0",
+            "lgp-test-6x3-35",
+            "lgp-test-4x3-24",
+            "lgp-test-2x3-39",
+            "lgp-test-6x4-4",
+            "lgp-test-2x5-10",
+            "lgp-test-6x2-12",
+            "lgp-test-5x3-31",
+            "lgp-test-4x5-12",
+            "lgp-test-5x4-0",
+            "lgp-test-2x4-14",
+            "lgp-test-6x5-3",
+            "lgp-test-5x6-6",
+            "lgp-test-3x2-38",
+            "lgp-test-5x2-37",
+            "lgp-test-2x2-2",
+            "lgp-test-3x6-24",
+            "lgp-test-4x6-39",
+            "lgp-test-3x3-14",
+            "lgp-test-4x2-8",
+            "lgp-test-4x4-32",
+            "lgp-test-3x5-30",
+            "lgp-test-6x6-0",
+            "lgp-test-2x6-27",
+            "lgp-test-3x4-13",
+            "lgp-test-5x5-27",
+            "lgp-test-6x3-31",
+            "lgp-test-4x3-17",
+            "lgp-test-2x3-26",
+            "lgp-test-6x4-5",
+            "lgp-test-2x5-24",
+            "lgp-test-6x2-36",
+            "lgp-test-5x3-35",
+            "lgp-test-4x5-32",
+            "lgp-test-5x4-39",
+            "lgp-test-2x4-35",
+            "lgp-test-6x5-39",
+            "lgp-test-5x6-27",
+            "lgp-test-3x2-1",
+            "lgp-test-5x2-30",
+            "lgp-test-2x2-9",
+            "lgp-test-3x6-7",
+            "lgp-test-4x6-8",
+            "lgp-test-3x3-34",
+            "lgp-test-4x2-35",
+            "lgp-test-4x4-5",
+            "lgp-test-3x5-23",
+            "lgp-test-6x6-33",
+            "lgp-test-2x6-7",
+            "lgp-test-3x4-12",
+            "lgp-test-5x5-15",
+            "lgp-test-6x3-30"
+          ],
+          "pilot": [
+            "lgp-test-2x2-26",
+            "lgp-test-2x2-18",
+            "lgp-test-2x3-4",
+            "lgp-test-2x3-7",
+            "lgp-test-2x4-15",
+            "lgp-test-2x4-37",
+            "lgp-test-2x5-37",
+            "lgp-test-2x5-26",
+            "lgp-test-2x6-10",
+            "lgp-test-2x6-11",
+            "lgp-test-3x2-31",
+            "lgp-test-3x2-3",
+            "lgp-test-3x3-30",
+            "lgp-test-3x3-9",
+            "lgp-test-3x4-4",
+            "lgp-test-3x4-29",
+            "lgp-test-3x5-39",
+            "lgp-test-3x5-14",
+            "lgp-test-3x6-13",
+            "lgp-test-3x6-36",
+            "lgp-test-4x2-22",
+            "lgp-test-4x2-9",
+            "lgp-test-4x3-20",
+            "lgp-test-4x3-38",
+            "lgp-test-4x4-22",
+            "lgp-test-4x4-24",
+            "lgp-test-4x5-24",
+            "lgp-test-4x5-33",
+            "lgp-test-4x6-26",
+            "lgp-test-4x6-2",
+            "lgp-test-5x2-8",
+            "lgp-test-5x2-35",
+            "lgp-test-5x3-9",
+            "lgp-test-5x3-20",
+            "lgp-test-5x4-20",
+            "lgp-test-5x4-27",
+            "lgp-test-5x5-11",
+            "lgp-test-5x5-10",
+            "lgp-test-5x6-19",
+            "lgp-test-5x6-23",
+            "lgp-test-6x2-9",
+            "lgp-test-6x2-8",
+            "lgp-test-6x3-16",
+            "lgp-test-6x3-32",
+            "lgp-test-6x4-23",
+            "lgp-test-6x4-1",
+            "lgp-test-6x5-31",
+            "lgp-test-6x5-22",
+            "lgp-test-6x6-7",
+            "lgp-test-6x6-19"
+          ],
+          "smoke": [
+            "lgp-test-3x3-15",
+            "lgp-test-4x4-30",
+            "lgp-test-6x6-2"
+          ]
+        },
+        "stage_fractions": [
+          0.5,
+          0.25,
+          0.25
+        ],
+        "temperature": "provider_default_not_configurable"
+      }
+    },
+    "zebralogic_luna_confirmation": {
+      "manifest_sha256": "6d49eea27c46de87d0f8e4c1632731bf2bef7efd56ac153bfc66ff080a75e279",
+      "config": {
+        "api_concurrency": 256,
+        "bootstrap": "task paired, independently within each size stratum; equal size weights",
+        "bootstrap_samples": 10000,
+        "bootstrap_seed": 20260927,
+        "calls_per_stage_worker": 1,
+        "dataset_revision": "0a473f5a0054835754ed156d5a79c6ce27178bb1",
+        "dataset_sha256": "545cd5cce9c54575c7f74769b8f1250b8bb94f5745519c83b99b8db01f95924d",
+        "endpoint": "https://openrouter.ai/api/v1",
+        "estimand": "end-to-end success; exhausted connection failures are separately labelled zeros",
+        "evaluation_budgets": [
+          32768,
+          65536,
+          131072
+        ],
+        "minimum_output_tokens": 256,
+        "model": "openai/gpt-6-luna",
+        "model_rng_seed": null,
+        "operational_policies": {
+          "connection": "Predeclared before confirmation inference: explicit APIConnectionError/APITimeoutError requests receive at most two identical-payload retries with durable backoff. Exhaustion is a separately labelled infrastructure/end-to-end failure with reward zero; other trials continue. Missing responses without transport evidence, authentication, corruption, model/tier drift and invalid budgets still stop. Lost-call usage/cost is UNKNOWN and additional operational spend is outside retained-call ceilings.",
+          "provider": "Predeclared before confirmation inference: bounded error-only 429/503 rejection retries with durable backoff; policy refusals are empty candidates, never answer-quality retries. Missing served tier is allowed only for flagged refusals and remains UNKNOWN; ordinary completions must verify Flex. Conservatively accounted usage remains UNKNOWN.",
+          "rejected": "Predeclared before confirmation inference: narrowly identified access-check rejections are archived and bounded by the inherited eight-rejection cap. Unreported usage is UNKNOWN. Only the separately specified transport policy permits uncertain connection retries.",
+          "scheduling": "Predeclared before confirmation inference: one bounded global request pool and telemetry-only ramp. Physical concurrency is not logical worker count. Prompts, stage barriers, candidate ordering, task selection and grading are unchanged. No wall-clock speedup claim. Retry rules are fixed separately in this manifest.",
+          "usage": "Predeclared before confirmation inference: retain eligible zero-native-usage responses without replay; debit their full call allocation and flag actual usage UNKNOWN. No new budget is granted."
+        },
+        "outcome_stop_policy": "never_stop_or_replace_tasks_on_model_score",
+        "packages": {
+          "numpy": "2.5.3",
+          "openai": "2.54.0",
+          "pyarrow": "25.0.1",
+          "python-dotenv": "1.2.3",
+          "tiktoken": "0.14.0"
+        },
+        "policies": {
+          "adaptive_communicating": [
+            4,
+            8,
+            16
+          ],
+          "fixed4_communicating": [
+            4,
+            4,
+            4
+          ],
+          "matched_independent": [
+            4,
+            8,
+            16
+          ],
+          "single": [
+            1,
+            1,
+            1
+          ]
+        },
+        "primary": "adaptive_communicating minus fixed4_communicating; equal 65536/131072 budgets, repetitions, tasks",
+        "protocol": "zebralogic-luna-flex-confirmation-v1",
+        "provenance_sha256": "37e9673400c41501e48f4d672375f693004a73735fc20e02c072d39b5432b70c",
+        "python": "3.14.2",
+        "reasoning_effort": "low",
+        "repetitions": 2,
+        "schedule": {
+          "api_concurrency": 256,
+          "ramp_seconds": 120,
+          "ramp_start": 64,
+          "ramp_trials": 32,
+          "trial_concurrency": 64
+        },
+        "secondary_inference": "descriptive/exploratory only; no secondary significance claims",
+        "seed": 20260927,
+        "service_tier": "flex",
+        "shared_excerpt_tokens": 768,
+        "source_sha256": "bc4314aa02efb02c8f0adee49f5687d29b2ffe6450a1a4fb65e9a2556a85d02a",
+        "splits": {
+          "evaluation": [
+            "lgp-test-2x2-27",
+            "lgp-test-2x2-21",
+            "lgp-test-2x2-23",
+            "lgp-test-2x2-32",
+            "lgp-test-2x2-6",
+            "lgp-test-2x2-5",
+            "lgp-test-2x2-0",
+            "lgp-test-2x2-35",
+            "lgp-test-2x2-17",
+            "lgp-test-2x2-36",
+            "lgp-test-2x2-14",
+            "lgp-test-2x2-39",
+            "lgp-test-2x3-32",
+            "lgp-test-2x3-16",
+            "lgp-test-2x3-33",
+            "lgp-test-2x3-10",
+            "lgp-test-2x3-14",
+            "lgp-test-2x3-19",
+            "lgp-test-2x3-21",
+            "lgp-test-2x3-13",
+            "lgp-test-2x3-6",
+            "lgp-test-2x3-12",
+            "lgp-test-2x3-22",
+            "lgp-test-2x3-23",
+            "lgp-test-2x4-33",
+            "lgp-test-2x4-39",
+            "lgp-test-2x4-31",
+            "lgp-test-2x4-17",
+            "lgp-test-2x4-0",
+            "lgp-test-2x4-24",
+            "lgp-test-2x4-23",
+            "lgp-test-2x4-13",
+            "lgp-test-2x4-38",
+            "lgp-test-2x4-10",
+            "lgp-test-2x4-22",
+            "lgp-test-2x4-26",
+            "lgp-test-2x5-18",
+            "lgp-test-2x5-31",
+            "lgp-test-2x5-23",
+            "lgp-test-2x5-19",
+            "lgp-test-2x5-35",
+            "lgp-test-2x5-34",
+            "lgp-test-2x5-6",
+            "lgp-test-2x5-16",
+            "lgp-test-2x5-11",
+            "lgp-test-2x5-13",
+            "lgp-test-2x5-12",
+            "lgp-test-2x5-22",
+            "lgp-test-2x6-37",
+            "lgp-test-2x6-23",
+            "lgp-test-2x6-6",
+            "lgp-test-2x6-16",
+            "lgp-test-2x6-12",
+            "lgp-test-2x6-22",
+            "lgp-test-2x6-24",
+            "lgp-test-2x6-15",
+            "lgp-test-2x6-31",
+            "lgp-test-2x6-32",
+            "lgp-test-2x6-20",
+            "lgp-test-2x6-36",
+            "lgp-test-3x2-7",
+            "lgp-test-3x2-17",
+            "lgp-test-3x2-16",
+            "lgp-test-3x2-12",
+            "lgp-test-3x2-30",
+            "lgp-test-3x2-5",
+            "lgp-test-3x2-26",
+            "lgp-test-3x2-27",
+            "lgp-test-3x2-0",
+            "lgp-test-3x2-29",
+            "lgp-test-3x2-23",
+            "lgp-test-3x2-24",
+            "lgp-test-3x3-32",
+            "lgp-test-3x3-5",
+            "lgp-test-3x3-25",
+            "lgp-test-3x3-7",
+            "lgp-test-3x3-2",
+            "lgp-test-3x3-1",
+            "lgp-test-3x3-36",
+            "lgp-test-3x3-33",
+            "lgp-test-3x3-27",
+            "lgp-test-3x3-23",
+            "lgp-test-3x3-24",
+            "lgp-test-3x3-4",
+            "lgp-test-3x4-21",
+            "lgp-test-3x4-18",
+            "lgp-test-3x4-22",
+            "lgp-test-3x4-6",
+            "lgp-test-3x4-23",
+            "lgp-test-3x4-25",
+            "lgp-test-3x4-5",
+            "lgp-test-3x4-35",
+            "lgp-test-3x4-38",
+            "lgp-test-3x4-26",
+            "lgp-test-3x4-24",
+            "lgp-test-3x4-11",
+            "lgp-test-3x5-26",
+            "lgp-test-3x5-33",
+            "lgp-test-3x5-4",
+            "lgp-test-3x5-5",
+            "lgp-test-3x5-27",
+            "lgp-test-3x5-9",
+            "lgp-test-3x5-10",
+            "lgp-test-3x5-25",
+            "lgp-test-3x5-6",
+            "lgp-test-3x5-13",
+            "lgp-test-3x5-29",
+            "lgp-test-3x5-2",
+            "lgp-test-3x6-35",
+            "lgp-test-3x6-33",
+            "lgp-test-3x6-2",
+            "lgp-test-3x6-34",
+            "lgp-test-3x6-39",
+            "lgp-test-3x6-17",
+            "lgp-test-3x6-22",
+            "lgp-test-3x6-32",
+            "lgp-test-3x6-5",
+            "lgp-test-3x6-1",
+            "lgp-test-3x6-8",
+            "lgp-test-3x6-25",
+            "lgp-test-4x2-1",
+            "lgp-test-4x2-39",
+            "lgp-test-4x2-28",
+            "lgp-test-4x2-25",
+            "lgp-test-4x2-7",
+            "lgp-test-4x2-29",
+            "lgp-test-4x2-13",
+            "lgp-test-4x2-5",
+            "lgp-test-4x2-14",
+            "lgp-test-4x2-33",
+            "lgp-test-4x2-23",
+            "lgp-test-4x2-34",
+            "lgp-test-4x3-28",
+            "lgp-test-4x3-37",
+            "lgp-test-4x3-33",
+            "lgp-test-4x3-6",
+            "lgp-test-4x3-3",
+            "lgp-test-4x3-5",
+            "lgp-test-4x3-4",
+            "lgp-test-4x3-0",
+            "lgp-test-4x3-12",
+            "lgp-test-4x3-9",
+            "lgp-test-4x3-21",
+            "lgp-test-4x3-16",
+            "lgp-test-4x4-25",
+            "lgp-test-4x4-21",
+            "lgp-test-4x4-1",
+            "lgp-test-4x4-16",
+            "lgp-test-4x4-19",
+            "lgp-test-4x4-12",
+            "lgp-test-4x4-7",
+            "lgp-test-4x4-26",
+            "lgp-test-4x4-10",
+            "lgp-test-4x4-6",
+            "lgp-test-4x4-29",
+            "lgp-test-4x4-15",
+            "lgp-test-4x5-22",
+            "lgp-test-4x5-11",
+            "lgp-test-4x5-19",
+            "lgp-test-4x5-10",
+            "lgp-test-4x5-35",
+            "lgp-test-4x5-8",
+            "lgp-test-4x5-36",
+            "lgp-test-4x5-20",
+            "lgp-test-4x5-9",
+            "lgp-test-4x5-25",
+            "lgp-test-4x5-13",
+            "lgp-test-4x5-18",
+            "lgp-test-4x6-3",
+            "lgp-test-4x6-27",
+            "lgp-test-4x6-7",
+            "lgp-test-4x6-36",
+            "lgp-test-4x6-29",
+            "lgp-test-4x6-20",
+            "lgp-test-4x6-15",
+            "lgp-test-4x6-1",
+            "lgp-test-4x6-32",
+            "lgp-test-4x6-30",
+            "lgp-test-4x6-4",
+            "lgp-test-4x6-14",
+            "lgp-test-5x2-25",
+            "lgp-test-5x2-0",
+            "lgp-test-5x2-19",
+            "lgp-test-5x2-2",
+            "lgp-test-5x2-3",
+            "lgp-test-5x2-33",
+            "lgp-test-5x2-5",
+            "lgp-test-5x2-31",
+            "lgp-test-5x2-1",
+            "lgp-test-5x2-14",
+            "lgp-test-5x2-7",
+            "lgp-test-5x2-22",
+            "lgp-test-5x3-38",
+            "lgp-test-5x3-18",
+            "lgp-test-5x3-1",
+            "lgp-test-5x3-7",
+            "lgp-test-5x3-23",
+            "lgp-test-5x3-14",
+            "lgp-test-5x3-29",
+            "lgp-test-5x3-21",
+            "lgp-test-5x3-12",
+            "lgp-test-5x3-13",
+            "lgp-test-5x3-22",
+            "lgp-test-5x3-6",
+            "lgp-test-5x4-31",
+            "lgp-test-5x4-7",
+            "lgp-test-5x4-8",
+            "lgp-test-5x4-10",
+            "lgp-test-5x4-18",
+            "lgp-test-5x4-32",
+            "lgp-test-5x4-26",
+            "lgp-test-5x4-24",
+            "lgp-test-5x4-28",
+            "lgp-test-5x4-23",
+            "lgp-test-5x4-11",
+            "lgp-test-5x4-1",
+            "lgp-test-5x5-5",
+            "lgp-test-5x5-28",
+            "lgp-test-5x5-38",
+            "lgp-test-5x5-25",
+            "lgp-test-5x5-7",
+            "lgp-test-5x5-31",
+            "lgp-test-5x5-8",
+            "lgp-test-5x5-30",
+            "lgp-test-5x5-39",
+            "lgp-test-5x5-14",
+            "lgp-test-5x5-29",
+            "lgp-test-5x5-2",
+            "lgp-test-5x6-31",
+            "lgp-test-5x6-7",
+            "lgp-test-5x6-11",
+            "lgp-test-5x6-38",
+            "lgp-test-5x6-25",
+            "lgp-test-5x6-22",
+            "lgp-test-5x6-8",
+            "lgp-test-5x6-4",
+            "lgp-test-5x6-1",
+            "lgp-test-5x6-14",
+            "lgp-test-5x6-26",
+            "lgp-test-5x6-36",
+            "lgp-test-6x2-28",
+            "lgp-test-6x2-29",
+            "lgp-test-6x2-4",
+            "lgp-test-6x2-1",
+            "lgp-test-6x2-6",
+            "lgp-test-6x2-24",
+            "lgp-test-6x2-37",
+            "lgp-test-6x2-19",
+            "lgp-test-6x2-7",
+            "lgp-test-6x2-18",
+            "lgp-test-6x2-30",
+            "lgp-test-6x2-10",
+            "lgp-test-6x3-11",
+            "lgp-test-6x3-37",
+            "lgp-test-6x3-14",
+            "lgp-test-6x3-12",
+            "lgp-test-6x3-27",
+            "lgp-test-6x3-23",
+            "lgp-test-6x3-9",
+            "lgp-test-6x3-34",
+            "lgp-test-6x3-5",
+            "lgp-test-6x3-28",
+            "lgp-test-6x3-29",
+            "lgp-test-6x3-4",
+            "lgp-test-6x4-34",
+            "lgp-test-6x4-10",
+            "lgp-test-6x4-32",
+            "lgp-test-6x4-11",
+            "lgp-test-6x4-29",
+            "lgp-test-6x4-26",
+            "lgp-test-6x4-7",
+            "lgp-test-6x4-33",
+            "lgp-test-6x4-3",
+            "lgp-test-6x4-39",
+            "lgp-test-6x4-31",
+            "lgp-test-6x4-6",
+            "lgp-test-6x5-20",
+            "lgp-test-6x5-21",
+            "lgp-test-6x5-17",
+            "lgp-test-6x5-11",
+            "lgp-test-6x5-5",
+            "lgp-test-6x5-13",
+            "lgp-test-6x5-26",
+            "lgp-test-6x5-28",
+            "lgp-test-6x5-16",
+            "lgp-test-6x5-14",
+            "lgp-test-6x5-2",
+            "lgp-test-6x5-9",
+            "lgp-test-6x6-3",
+            "lgp-test-6x6-12",
+            "lgp-test-6x6-17",
+            "lgp-test-6x6-35",
+            "lgp-test-6x6-10",
+            "lgp-test-6x6-34",
+            "lgp-test-6x6-38",
+            "lgp-test-6x6-26",
+            "lgp-test-6x6-15",
+            "lgp-test-6x6-5",
+            "lgp-test-6x6-23",
+            "lgp-test-6x6-16"
+          ],
+          "smoke": [
+            "lgp-test-3x3-12",
+            "lgp-test-4x4-0",
+            "lgp-test-6x6-29"
+          ]
+        },
+        "stage_fractions": [
+          0.5,
+          0.25,
+          0.25
+        ],
+        "tasks_per_size": 12,
+        "temperature": "provider_default_not_configurable",
+        "unique_cells": [
+          [
+            32768,
+            1,
+            "independent"
+          ],
+          [
+            32768,
+            4,
+            "communicating"
+          ],
+          [
+            32768,
+            4,
+            "independent"
+          ],
+          [
+            65536,
+            1,
+            "independent"
+          ],
+          [
+            65536,
+            4,
+            "communicating"
+          ],
+          [
+            65536,
+            8,
+            "communicating"
+          ],
+          [
+            65536,
+            8,
+            "independent"
+          ],
+          [
+            131072,
+            1,
+            "independent"
+          ],
+          [
+            131072,
+            4,
+            "communicating"
+          ],
+          [
+            131072,
+            16,
+            "communicating"
+          ],
+          [
+            131072,
+            16,
+            "independent"
+          ]
+        ]
+      }
+    },
+    "graphcolor_luna": {
+      "manifest_sha256": "8b6602af4a4c7f2d8e9bfd342335199110a0b67fd019073bdac1550e7a7b66ae",
+      "config": {
+        "accounting": "native usage if valid; otherwise full stage allocation, flagged unknown; retries outside retained budgets",
+        "candidate_selection": "first locally valid revision in worker order; otherwise first nonempty revision; no draft rescue",
+        "cells": [
+          [
+            1,
+            "independent"
+          ],
+          [
+            4,
+            "independent"
+          ],
+          [
+            4,
+            "communicating"
+          ]
+        ],
+        "colours": 3,
+        "communication": "revision receives predecessor draft in directed ring; independent sees own only",
+        "edge_probability": 0.2,
+        "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+        "evaluation_budgets": [
+          4096,
+          8192
+        ],
+        "generator": "local RG-style greedy-solvable random graphs; not official reasoning-gym distribution",
+        "max_attempts": 3,
+        "minimum_output_tokens": 64,
+        "model": "openai/gpt-6-luna",
+        "packages": {
+          "httpx": "0.28.1",
+          "numpy": "2.5.3",
+          "python-dotenv": "1.2.3",
+          "tiktoken": "0.14.0"
+        },
+        "pilot": "30 fixed tasks at B8192/N1; report only, never tune or replace tasks based on scores",
+        "primary": "N4 communicating minus N4 independent, equal budgets/repetitions; size-stratified paired-task bootstrap",
+        "protocol": "graphcolor-luna-flex-v1",
+        "python": "3.14.2",
+        "reasoning_effort": "low",
+        "repetitions": 2,
+        "retry": "same payload for transport errors, unknown interrupted attempts, HTTP 408/429/5xx; max 3 total attempts per call across resumes",
+        "rounds": [
+          "draft",
+          "revision"
+        ],
+        "secondary": "N4 minus N1 descriptive; raw worker-count effects are verifier-assisted best-of-N",
+        "seed": 20260928,
+        "service_tier": "flex",
+        "shutdown_grace_seconds": 30,
+        "source_sha256": "1a53ef80a4814e8af125c99a12307a723cb823d9b02380ca30463c6e9941bc57",
+        "stage_fractions": [
+          0.5,
+          0.5
+        ],
+        "tier_policy": "require reported Flex on non-refusals; missing tier on refusal flagged unknown",
+        "total_call_deadline_seconds": 180,
+        "vertices": [
+          10,
+          12,
+          14,
+          16,
+          18
+        ]
+      }
+    },
+    "graphcolor_muse": {
+      "manifest_sha256": "6a2ebe144fa16599726d8b360a1a8b09d3f32d17af2c34b611e861c19bb8101d",
+      "config": {
+        "accounting": "native usage if valid; otherwise full stage allocation, flagged unknown; retries outside retained budgets",
+        "candidate_selection": "first locally valid revision in worker order; otherwise first nonempty revision; no draft rescue",
+        "cells": [
+          [
+            1,
+            "independent"
+          ],
+          [
+            4,
+            "independent"
+          ],
+          [
+            4,
+            "communicating"
+          ]
+        ],
+        "colours": 3,
+        "communication": "revision receives predecessor draft in directed ring; independent sees own only",
+        "edge_probability": 0.2,
+        "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+        "evaluation_budgets": [
+          4096,
+          8192
+        ],
+        "generator": "local RG-style greedy-solvable random graphs; not official reasoning-gym distribution",
+        "max_attempts": 3,
+        "minimum_output_tokens": 64,
+        "model": "meta/muse-spark-1.3-contributor",
+        "packages": {
+          "httpx": "0.28.1",
+          "numpy": "2.5.3",
+          "python-dotenv": "1.2.3",
+          "tiktoken": "0.14.0"
+        },
+        "pilot": "30 fixed tasks at B8192/N1; report only, never tune or replace tasks based on scores",
+        "primary": "N4 communicating minus N4 independent, equal budgets/repetitions; size-stratified paired-task bootstrap",
+        "protocol": "graphcolor-muse-contributor-v1",
+        "python": "3.14.2",
+        "reasoning_effort": "provider_default",
+        "repetitions": 2,
+        "retry": "same payload for transport errors, unknown interrupted attempts, HTTP 408/429/5xx; max 3 total attempts per call across resumes",
+        "rounds": [
+          "draft",
+          "revision"
+        ],
+        "secondary": "N4 minus N1 descriptive; raw worker-count effects are verifier-assisted best-of-N",
+        "seed": 20260928,
+        "service_tier": null,
+        "shutdown_grace_seconds": 30,
+        "source_sha256": "15116d23af682bbd27f25336667d1de5274867bfc7e53ca807317dfd63c8c045",
+        "stage_fractions": [
+          0.5,
+          0.5
+        ],
+        "tier_policy": "no service_tier requested; absent/default/standard accepted; explicit other tiers rejected",
+        "total_call_deadline_seconds": 180,
+        "vertices": [
+          10,
+          12,
+          14,
+          16,
+          18
+        ]
+      }
+    },
+    "countdown_luna": {
+      "manifest_sha256": "079d8c132e9e6e23c985d43715b5a2238d0c6cd4564ef84ec64c71a8f4011988",
+      "config": {
+        "bootstrap_samples": 10000,
+        "budget": "Input+completion allocation per call; full allocation charged on unknown usage; retry spend outside retained trial budgets",
+        "budgets": [
+          8192,
+          16384
+        ],
+        "cells": [
+          [
+            1,
+            "independent"
+          ],
+          [
+            4,
+            "independent"
+          ],
+          [
+            4,
+            "communicating"
+          ]
+        ],
+        "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+        "evaluation_repetitions": 2,
+        "excerpt_tokens": 512,
+        "fractions": [
+          0.5,
+          0.5
+        ],
+        "kind": "countdown",
+        "limitations": "Published subsets/custom generators and adapted harnesses, not official full scores. Separate pilot; never change this output based on evaluation outcomes.",
+        "model": "openai/gpt-6-luna",
+        "output_sublimit": "provider completion-cap overruns accepted/flagged ONLY within original total allocation",
+        "packages": {
+          "httpx": "0.28.1",
+          "numpy": "2.5.3",
+          "python-dotenv": "1.2.3",
+          "tiktoken": "0.14.0"
+        },
+        "pilot_gate": "Review if N1 accuracy outside [0.20,0.95], >10% stage length finishes, >0 skipped stages or >0 infrastructure-affected trials",
+        "primary": "N4 communicating minus N4 independent, equal budgets/repetitions; paired-task size/category-stratified bootstrap, task-count-weighted strata",
+        "protocol": "countdown-luna-flex-v1",
+        "reasoning_effort": "low",
+        "retry": "Inherited graph runner: max3 attempts per stage, 180s deadlines, durable unknown-interruption retries; no answer-quality retries",
+        "rounds": [
+          "draft",
+          "revision"
+        ],
+        "secondary": "N4 versus N1 descriptive; not a fitted scaling law",
+        "seed": 20260929,
+        "selection": "first locally valid revision; worker-order ties; verifier assisted",
+        "service_tier": "flex",
+        "sources": {
+          "cheap_benchmark_runner.py": "de12b510c8d178f7145f38666973d5881345ed6a0bc5eeca73d52aa5575449d3",
+          "cheap_benchmark_tasks.py": "4e97cbac2eb5f50290c4497fa7596346722e15b56298b5d9fcd32b8c32516e4f",
+          "run_scaling_experiment_countdown_luna.py": "d3cb6af6ca5969f8b11150c14fcf4d51a7689cffe103aa1950c503fc7953a662",
+          "run_scaling_experiment_graphcolor_luna.py": "1a53ef80a4814e8af125c99a12307a723cb823d9b02380ca30463c6e9941bc57"
+        }
+      }
+    },
+    "bbeh_luna": {
+      "manifest_sha256": "fccf6ac8b3de3cf396345f7d84c6bfe57d9e09def460d497598093c68a3d756e",
+      "config": {
+        "bootstrap_samples": 10000,
+        "budget": "Input+completion allocation per call; full allocation charged on unknown usage; retry spend outside retained trial budgets",
+        "budgets": [
+          8192,
+          16384
+        ],
+        "cells": [
+          [
+            1,
+            "independent"
+          ],
+          [
+            4,
+            "independent"
+          ],
+          [
+            4,
+            "communicating"
+          ]
+        ],
+        "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+        "evaluation_repetitions": 2,
+        "excerpt_tokens": 512,
+        "fractions": [
+          0.5,
+          0.5
+        ],
+        "kind": "bbeh",
+        "limitations": "Published subsets/custom generators and adapted harnesses, not official full scores. Separate pilot; never change this output based on evaluation outcomes.",
+        "model": "openai/gpt-6-luna",
+        "output_sublimit": "provider completion-cap overruns accepted/flagged ONLY within original total allocation",
+        "packages": {
+          "httpx": "0.28.1",
+          "numpy": "2.5.3",
+          "python-dotenv": "1.2.3",
+          "tiktoken": "0.14.0"
+        },
+        "pilot_gate": "Review if N1 accuracy outside [0.20,0.95], >10% stage length finishes, >0 skipped stages or >0 infrastructure-affected trials",
+        "primary": "N4 communicating minus N4 independent, equal budgets/repetitions; paired-task size/category-stratified bootstrap, task-count-weighted strata",
+        "protocol": "bbeh-luna-flex-v1",
+        "reasoning_effort": "low",
+        "retry": "Inherited graph runner: max3 attempts per stage, 180s deadlines, durable unknown-interruption retries; no answer-quality retries",
+        "rounds": [
+          "draft",
+          "revision"
+        ],
+        "secondary": "N4 versus N1 descriptive; not a fitted scaling law",
+        "seed": 20260929,
+        "selection": "gold-blind plurality of normalized final answers; worker-order ties",
+        "service_tier": "flex",
+        "sources": {
+          "cheap_benchmark_runner.py": "de12b510c8d178f7145f38666973d5881345ed6a0bc5eeca73d52aa5575449d3",
+          "cheap_benchmark_tasks.py": "4e97cbac2eb5f50290c4497fa7596346722e15b56298b5d9fcd32b8c32516e4f",
+          "run_scaling_experiment_bbeh_luna.py": "dd3eaa88e06a5c45c53811d7b48288a87000f2ac451c52791278ec9517bad707",
+          "run_scaling_experiment_graphcolor_luna.py": "1a53ef80a4814e8af125c99a12307a723cb823d9b02380ca30463c6e9941bc57"
+        }
+      }
+    },
+    "planbench_luna": {
+      "manifest_sha256": "5f366e4a1ea67e514faaf8dd5b5e4f40d57b1f936d745183449b9ed4163a9a62",
+      "config": {
+        "bootstrap_samples": 10000,
+        "budget": "Input+completion allocation per call; full allocation charged on unknown usage; retry spend outside retained trial budgets",
+        "budgets": [
+          8192,
+          16384
+        ],
+        "cells": [
+          [
+            1,
+            "independent"
+          ],
+          [
+            4,
+            "independent"
+          ],
+          [
+            4,
+            "communicating"
+          ]
+        ],
+        "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+        "evaluation_repetitions": 2,
+        "excerpt_tokens": 512,
+        "fractions": [
+          0.5,
+          0.5
+        ],
+        "kind": "planbench",
+        "limitations": "Published subsets/custom generators and adapted harnesses, not official full scores. Separate pilot; never change this output based on evaluation outcomes.",
+        "model": "openai/gpt-6-luna",
+        "output_sublimit": "provider completion-cap overruns accepted/flagged ONLY within original total allocation",
+        "packages": {
+          "httpx": "0.28.1",
+          "numpy": "2.5.3",
+          "python-dotenv": "1.2.3",
+          "tiktoken": "0.14.0"
+        },
+        "pilot_gate": "Review if N1 accuracy outside [0.20,0.95], >10% stage length finishes, >0 skipped stages or >0 infrastructure-affected trials",
+        "primary": "N4 communicating minus N4 independent, equal budgets/repetitions; paired-task size/category-stratified bootstrap, task-count-weighted strata",
+        "protocol": "planbench-luna-flex-v1",
+        "reasoning_effort": "low",
+        "retry": "Inherited graph runner: max3 attempts per stage, 180s deadlines, durable unknown-interruption retries; no answer-quality retries",
+        "rounds": [
+          "draft",
+          "revision"
+        ],
+        "secondary": "N4 versus N1 descriptive; not a fitted scaling law",
+        "seed": 20260929,
+        "selection": "first locally valid revision; worker-order ties; verifier assisted",
+        "service_tier": "flex",
+        "sources": {
+          "cheap_benchmark_runner.py": "de12b510c8d178f7145f38666973d5881345ed6a0bc5eeca73d52aa5575449d3",
+          "cheap_benchmark_tasks.py": "4e97cbac2eb5f50290c4497fa7596346722e15b56298b5d9fcd32b8c32516e4f",
+          "run_scaling_experiment_graphcolor_luna.py": "1a53ef80a4814e8af125c99a12307a723cb823d9b02380ca30463c6e9941bc57",
+          "run_scaling_experiment_planbench_luna.py": "c72ec4c5c42d2c3a166e906645f64590af4ab4e540bf6a93bb5e339a18a9c94d"
+        }
+      }
+    }
+  },
+  "configuration_not_embedded_in_compact_export": [
+    "bigcodebench_luna_scaling",
+    "bigcodebench_muse_scaling",
+    "mbpp_luna_scaling",
+    "mbpp_muse_scaling"
+  ],
+  "limits": "Referenced runner files, prompts, dependency locks, or provider assets may be outside this concise package. These objects are copied from the supplied exports; missing settings are not invented."
+}
