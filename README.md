@@ -8,8 +8,8 @@ The `reproducibility-v1.3` snapshot covers **eleven complementary studies: 26,64
 
 | File | Purpose |
 | --- | --- |
-| [paper/main.pdf](paper/main.pdf) | Current manuscript with concise protocols, primary findings, and interpretation caveats. |
-| [paper/main.tex](paper/main.tex), [paper/appendix.tex](paper/appendix.tex) | Readable current manuscript sources. |
+| [paper/main.pdf](paper/main.pdf) | Current extended abstract: two main pages plus references, with key findings and caveats. |
+| [paper/main.tex](paper/main.tex), [paper/appendix.tex](paper/appendix.tex) | Current extended-abstract source and retained supplementary source; the appendix is not included in the current PDF. |
 | [paper/agentevalsci2026-source.zip](paper/agentevalsci2026-source.zip) | Complete editable LaTeX package, including figures, template, fonts, licenses, and offline evidence check. |
 | [docs/METHODS.md](docs/METHODS.md) | Grids, models, task sources, grading, and statistical methods. |
 | [docs/DATA.md](docs/DATA.md) | Study counts, CSV fields, accounting, and exclusions. |
@@ -35,6 +35,6 @@ Run Python without `-O`, because the verifier uses assertions. It checks trial k
 
 This concise package supports review of saved outcomes. It does not recompute confidence intervals, validate original graders, or provide complete inference replay or attempted-call accounting. Full experimental archives, provider payloads, and historical reports are not included. The current PDF includes the supplied controlled-study protocol and result summary; complete controlled-study methods, configuration results, and supporting records are not included in this snapshot. The tagged snapshot records what is available at this version; its coverage note identifies missing controlled-study records.
 
-When citing these materials, give the paper title, authors, repository URL, and `reproducibility-v1.3` tag or exact commit.
+When citing these materials, give the paper title, authors, repository URL, and `reproducibility-v1.3` tag or exact commit. The evidence snapshot remains fixed; paper files on `main` contain the current extended abstract. The earlier full manuscript is retained in the repository history.
 
 To rebuild the paper, download and unpack the complete source ZIP, then run `make` inside its extracted folder with XeLaTeX and BibTeX installed. The standalone `.tex` files above are provided for inspection; the ZIP contains their required assets. Upload `main.pdf` to OpenReview after the remaining controlled-study information and author fields are completed.

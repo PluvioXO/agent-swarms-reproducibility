@@ -73,7 +73,8 @@
       "evidence/study-configs.json"
     ],
     "controlled_study_summary_included": true,
-    "manuscript_source_package": "paper/agentevalsci2026-source.zip"
+    "manuscript_source_package": "paper/agentevalsci2026-source.zip",
+    "manuscript_format": "Extended Abstract: two main pages plus references; title and abstract preserved during condensation."
   },
   "source_path_convention": "Source-file paths identify original workspace inputs, not files promised in this public snapshot. Their hashes record provenance; SHA256SUMS covers the distributed files.",
   "additional_source_document": {
