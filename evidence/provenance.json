@@ -1,0 +1,80 @@
+{
+  "prepared_for": "AgentEvalSci 2026 Symposium",
+  "checked_on": "2026-10-25",
+  "source_files": [
+    {
+      "path": "main.tex",
+      "sha256": "80f23f0f9a427e81d428d9eff8fe780741220c29a7843fef87e1de244b637922"
+    },
+    {
+      "path": "reproducibility-record.tex",
+      "sha256": "2abd43a920e6f2a886d360db8bdf6dc08dd1a4b169322090a4aa1f88c5ea2254"
+    },
+    {
+      "path": "graph-colouring-tex.tex",
+      "sha256": "427f14d1d7eb207afcca0601b391c2cb5b28638681ab5a9d43f9039daf0c22b1"
+    },
+    {
+      "path": "countdown-tex.tex",
+      "sha256": "edf7165ef5e667f3df505fe13c3b06c497e2fd35b65da16056e22db61215d5c2"
+    },
+    {
+      "path": "bbeh-tex.tex",
+      "sha256": "bdd157ee5c0847b921ca7fc0b7c2e3249939d28c33d68db87e7ff396a921efd6"
+    },
+    {
+      "path": "planbench-tex.tex",
+      "sha256": "4ab2f7830bbf98de3e6cbe1cc32def175e5881b86873814ee1ad2e60e5d039eb"
+    },
+    {
+      "path": "zebralogic-confirmation-tex.tex",
+      "sha256": "294976dfbd10a3cf55127b6ebf89b2c34f57c81378cfd7db493d22f1dd71e3d9"
+    },
+    {
+      "path": "figures/figure1-data.json",
+      "sha256": "34ccff9d9b49e232bd655c5e560ff383a4600f2cbc75b1567a0f435c71861b0a"
+    },
+    {
+      "path": "figures/main-evidence.pdf",
+      "sha256": "c9d70ce4dadc3eccf84913e272d2adf1724ce8cbdee7b753787c14ba5707f528"
+    },
+    {
+      "path": "prism-uploads/completed_experiments_graph_data.json",
+      "sha256": "283ef9532cd220bcf6c16716092db23120f92c219b9ebcccce3045e5e95114ff"
+    },
+    {
+      "path": "prism-uploads/saved_report_graph_data.json",
+      "sha256": "dcb588f283a09dd0f914df414772d3a8d16dfd14f7bcbb2ee15c3b68adfb75a0"
+    }
+  ],
+  "included_splits": [
+    "calibration",
+    "evaluation"
+  ],
+  "excluded": "Pilot/smoke trials, imported baseline studies, incomplete studies, and rows explicitly marked analysis_included=false. One superseded MBPP+ Muse evaluation row excluded.",
+  "tokens": "Original per-trial charged tokens or retained debit; unknown all-attempt expenditure is not imputed.",
+  "stage_calls": "Only retained phase records, available in seven later studies; blank for four programming studies.",
+  "availability": "The public reproducibility-v1 snapshot contains peer-review essentials for saved-outcome analysis of the eleven complementary studies: normalized trials, cell summaries, verifier, concise methods/data notes, provenance hashes, and current paper PDF. Full archives and historical reports are retained locally. It does not include the controlled-study records or claim complete inference replay or independent replication.",
+  "publication": {
+    "repository": "https://github.com/PluvioXO/agent-swarms-reproducibility",
+    "snapshot_ref": "reproducibility-v1",
+    "snapshot_url": "https://github.com/PluvioXO/agent-swarms-reproducibility/tree/reproducibility-v1",
+    "prepared_on": "2026-10-25",
+    "included_scientific_trials": 26648,
+    "included_studies": 11,
+    "controlled_study_records_included": false,
+    "scope": "Concise peer-review materials; full source/run archives, historical reports, and raw provider payloads are not included."
+  },
+  "source_path_convention": "Source-file paths identify original workspace inputs, not files promised in this public snapshot. Their hashes record provenance; SHA256SUMS covers the distributed files.",
+  "additional_source_document": {
+    "filename": "main-3.pdf",
+    "sha256": "4fc3a708016bc84839e6b1b4c3a36431bfa9a6082b699696786ae04014378784",
+    "pages": 72,
+    "used_pages": [
+      67,
+      68,
+      69
+    ],
+    "scope": "Generator seed, BBEH and PlanBench dataset revisions and excerpt limits, and task-paired inference details for the eleven complementary studies."
+  }
+}
