@@ -19,10 +19,12 @@ Calibration and evaluation tasks are distinct within the original studies. BigCo
 | BigCodeBench | Model-integrated final code; saved sandbox test result, without hidden-test feedback to workers. |
 | MBPP+ | Model-integrated final code; base and EvalPlus tests. |
 | ZebraLogic | Model-integrated answer; normalized whole-grid exact correctness. Malformed or empty grids fail. |
-| Graph colouring | 100 local greedy-solvable three-colour graphs; vertex counts 10/12/14/16/18, edge probability 0.2, generator seed 20260928. First valid revision in worker order, otherwise first nonempty revision; no draft rescue. This is a local adaptation inspired by Reasoning Gym. |
-| Countdown | 100 custom puzzles with four to eight supplied numbers; verifier-assisted selection checks arithmetic constraints and target match. |
+| Graph colouring | 100 algorithmically generated local greedy-solvable three-colour graphs; vertex counts 10/12/14/16/18, edge probability 0.2, generator seed 20260928. First valid revision in worker order, otherwise first nonempty revision; no draft rescue. This is a local adaptation inspired by Reasoning Gym. |
+| Countdown | 100 algorithmically generated custom puzzles with four to eight supplied numbers; verifier-assisted selection checks arithmetic constraints and target match. |
 | BBEH | 25 tasks each from disambiguation QA, multistep arithmetic, spatial reasoning, and time arithmetic. Gold-blind normalized-answer plurality with worker-order ties, followed by local exact/fuzzy grading. |
 | PlanBench | 100 Blocksworld Hard instances; first valid revision in worker order under a local STRIPS interpreter. Optimality is not required. |
+
+Graph-colouring and Countdown correctness is checked deterministically against the task constraints. Multiple valid colourings or arithmetic expressions may exist. Deterministic scoring still permits model success rates to vary across tasks and repetitions.
 
 Pinned task sources: [ZebraLogic grid_mode](https://huggingface.co/datasets/WildEval/ZebraLogic/tree/0a473f5a0054835754ed156d5a79c6ce27178bb1), revision `0a473f5a0054835754ed156d5a79c6ce27178bb1`; [BBEH](https://github.com/google-deepmind/bbeh/tree/80d12ca916b7158f22293fcf3144f4d3d854d4be), revision `80d12ca916b7158f22293fcf3144f4d3d854d4be`; [PlanBench](https://github.com/harshakokel/PlanBench/tree/1f4d600f4806bedbefebbbe44b168372aaf5060d), revision `1f4d600f4806bedbefebbbe44b168372aaf5060d`.
 
