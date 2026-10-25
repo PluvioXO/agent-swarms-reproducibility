@@ -1,6 +1,6 @@
 # Controlled Study: Supplied Summary and Coverage
 
-This note collects the controlled-study information supplied in the manuscript abstract, schedule figure, and author-edited results table and now summarized in the paper's main text. Its reported results are accepted as supplied by the author. The separate 8,400-trial dataset, complete methods, configuration results, and interval calculations are not included in this snapshot and are not checked by `verify_results.py`. The eleven complementary studies have their own data and methods.
+This note collects the controlled-study information supplied in the manuscript abstract, schedule figure, and author-supplied numerical results and now summarized in the paper's main text. Its reported results are accepted as supplied by the author. The separate 8,400-trial dataset, complete methods, configuration results, and interval calculations are not included in this snapshot and are not checked by `verify_results.py`. The eleven complementary studies have their own data and methods.
 
 ## Recorded design
 
@@ -14,7 +14,7 @@ This note collects the controlled-study information supplied in the manuscript a
 | Comparison or audit | Reported finding |
 | --- | --- |
 | Independent width one versus four at 4,096 completion tokens per worker | Accuracy increases by 16.0 percentage points in both task families while the total ceiling quadruples. |
-| Width one versus four under a fixed 4,096-token total completion ceiling | Graph accuracy changes from 56.0% to 18.5% (−37.5 percentage points). The author-edited table reports an arithmetic point estimate of −24.0 percentage points; its interpretation remains inconclusive. |
+| Width one versus four under a fixed 4,096-token total completion ceiling | Graph accuracy changes from 56.0% to 18.5% (−37.5 percentage points). The supplied arithmetic point estimate is −24.0 percentage points; its interpretation remains inconclusive. |
 | Primary comparisons against the matched sequential control | No established accuracy advantage at matched scheduled calls and nominal ceiling. |
 | Ring communication | No consistent gain. |
 | Candidate recovery | Finding a valid answer after an initial failure depends on the token allowance. |

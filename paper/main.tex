@@ -38,101 +38,67 @@ allocation policies; equal realized compute advantages and general scaling
 laws remain unestablished from this work.
 \end{abstract}
 
-\begin{quote}
-\small
-``All happy families are alike; each unhappy family is unhappy in its own way.''
----Leo Tolstoy, \emph{Anna Karenina} \citep{tolstoy2014}.
+\section{Study and Findings}
+This ongoing research programme studies allocation, participation, and
+selection. Controlled comparisons use widths $N=1,2,4$ (Figure~\ref{fig:worker-schedules}).
+Complementary programming and ZebraLogic grids test $N=1,2,4,8,16$;
+smaller diagnostic grids compare one and four. Tasks cover programming,
+logical reasoning, arithmetic, graph colouring, and planning
+\citep{zhuo2024bigcodebench,liu2023evalplus,lin2025zebralogic,
+kazemi2025bbeh,valmeekam2023planbench}.
+Paired bootstrap intervals retain whole-task clusters and study-specific strata.
 
-\emph{Adapted to this study:} All successful swarms share a valid outcome;
-unsuccessful swarms fail in different ways.
-\end{quote}
+Figure~\ref{fig:evidence} summarizes the complementary results. All 148
+wider cells use more recorded tokens: accuracy is lower in 75, equal in
+24, and higher in 49. At sixteen requested workers, BigCodeBench Muse's
+activation rises from 7.3\% to 45.3\% to 93.5\% across ceilings of 32,768,
+65,536, and 131,072. The transferred ZebraLogic $4/8/16$ policy gains
+$+0.92$ pp over fixed four (95\% interval $[-0.58,2.50]$), establishing
+neither superiority nor equivalence. The controlled fixed-total arithmetic
+estimate is $-24.0$ pp; the comparison remains inconclusive.
 
 
-\section{Evaluation Design}
-Worker-count evaluations combine resource allocation, candidate selection,
-and communication. Prior work on sampling and inference allocation motivates
-separating these factors \citep{brown2024monkeys,snell2024compute}.
+The wider grids reveal failures beyond four workers. For independent
+BigCodeBench Muse at $B=32{,}768$, accuracy is 36/64 at $N=8$, 14/64 at
+$N=16$, and 40/64 at $N=1$. Programming contributes 96 wider cells, 81 flat or
+worse, so the overall configuration count is not benchmark-balanced.
 
-The controlled study contains 8,400 trials on fresh arithmetic and
-graph-colouring tasks at widths $N=1,2,4$. With per-worker completion
-allowance $d$, total ceiling $B=Nd$, and two calls per worker, each call
-receives $d/2$ tokens. Independent workers revise their own drafts; ring
-workers receive predecessor information. A sequential control uses one
-worker for the same $2N$ scheduled calls and nominal ceiling, with
-prior-candidate and verifier feedback. All scheduled calls execute; the
-first valid candidate is retained.
+PlanBench's independent four-worker effect reverses from $-95.0$ pp
+($[-98.0,-91.5]$) to $+10.5$ pp ($[6.0,15.5]$) as its ceiling doubles;
+the higher-ceiling gain uses 4.06 times the control's retained debit.
+BBEH ring effects similarly change from $-6.5$ to $+4.5$ pp.
+Countdown's independent gains of 9.5--17.0 pp use 2.77--3.85 times the
+recorded tokens; ring revision instead reduces its pooled accuracy by
+$5.0$ pp ($[-8.5,-1.75]$). These results separate search gains from the
+tested communication intervention.
 
-Eleven complementary studies contribute 20,376 evaluation and 6,272
-calibration trials across seven task families. They use programming benchmarks
-\citep{zhuo2024bigcodebench,austin2021mbpp,liu2023evalplus},
-ZebraLogic \citep{lin2025zebralogic}, BBEH \citep{kazemi2025bbeh},
-PlanBench \citep{valmeekam2023planbench}, and custom graph and Countdown tasks.
-The programming and original ZebraLogic grids test widths 1, 2, 4, 8, and
-16; the smaller diagnostic grids compare one and four. Generated graph
-and arithmetic tasks use deterministic constraint checks. Selection varies
-between verifier-assisted search, model integration, and gold-blind
-plurality. Paired bootstrap analyses retain repeated observations within
-task clusters; intervals are study-specific without cross-study adjustment.
+Equal ceilings do not establish equal realized compute. Retained charges
+are incomplete ledgers, including 97 controlled-study attempts with unknown
+usage. Further work concerns resource-matched controls and policy transfer;
+general scaling laws remain unestablished. Evidence and protocols:
+\url{https://github.com/PluvioXO/agent-swarms-reproducibility}.
 
-\section{Findings}
-Table~\ref{tab:controlled-summary} separates increasing the total allowance
-from dividing a fixed ceiling. The fixed-total arithmetic comparison remains
-inconclusive despite its negative point estimate. The primary comparisons
-establish neither an accuracy advantage over matched sequential execution
-nor a consistent ring-communication gain.
-
-\begin{table}[htbp]
+\begin{figure}[htbp]
 \centering
-\small
-\begin{tabularx}{\linewidth}{@{}XYY@{}}
-\toprule
-Independent width 1 to 4 & Arithmetic & Graph colouring\\
-\midrule
-Fixed per-worker $d=4{,}096$ & $+16.0$ pp & $+16.0$ pp\\
-Fixed total $B=4{,}096$ & $-24.0$ pp & $-37.5$ pp\\
-\bottomrule
-\end{tabularx}
-\caption{Accuracy changes in percentage points. Holding $d$ fixed quadruples
-$B$. The fixed-total arithmetic contrast remains inconclusive.}
-\label{tab:controlled-summary}
-\end{table}
+\includegraphics[width=\linewidth]{figures/main-evidence.pdf}
+\caption{Complementary results. (A) Accuracy at widths 2, 4, 8, and 16 where
+tested, versus matched-ceiling $N=1$; all 148 wider cells use more recorded
+tokens. (B) Four-worker accuracy effects at two ceilings, pooled over revision
+conditions. (C) Activation at sixteen requested workers. Configurations
+share tasks and controls.}
+\label{fig:evidence}
+\end{figure}
 
-All 148 wider complementary-study cells use more recorded tokens than their
-matched-ceiling single-worker controls: accuracy is lower in 75, equal in
-24, and higher in 49. These are descriptive counts from unequal grids
-sharing tasks and controls.
-
-PlanBench illustrates how the width effect can reverse with the allowance.
-At an 8,192-token ceiling, four independent workers score 0\% versus 95\%
-for one; at 16,384, they score 100\% versus 89.5\%, using 4.06 times the
-single-worker retained debit. Width and per-worker allowance change together,
-so the reversal does not isolate a causal mechanism.
-
-A fresh-task ZebraLogic confirmation transfers a ring $4/8/16$ policy to
-300 unused puzzles; against fixed four at the two higher ceilings, its
-accuracy difference is $+0.92$ pp (95\% interval $[-0.58,2.50]$).
-This establishes neither superiority nor equivalence.
-
-\section{Interpretation and Reproducibility}
-Equal nominal ceilings do not establish equal realized compute. Retained
-charges are incomplete attempt ledgers; the controlled study includes
-97 attempts with unknown usage. Recovery after initial failure depends on
-the allowance. Heterogeneous models, small programming task sets, operational
-amendments, and possible public-task contamination limit generalization.
-The findings support evaluating specific allocation and selection policies;
-general scaling laws remain unestablished.
-
-Extended methods, all 176 complementary evaluation cells, saved outcomes,
-recorded configurations, provenance, and an offline verifier are available
-in the repository.\footnote{\url{https://github.com/PluvioXO/agent-swarms-reproducibility}}
-The controlled-study summary includes an explicit evidence-coverage note.
-The verifier covers the eleven complementary studies, without recomputing
-intervals, validating graders, or replaying inference.
-
-\paragraph{Funding and interests.}
-This work was financially supported in part by OpenAI and Daytona.
-The sponsors neither exercised editorial control nor requested specific findings.
-The content and conclusions remain solely the responsibility of the authors.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/worker-schedules.png}
+\caption{Worker scaling and controlled schedules. $N$ denotes parallel width,
+$d$ the per-worker completion allowance, and $B=Nd$ the total completion
+ceiling. All controlled schedules execute $2N$ calls, each allowed $d/2$
+completion tokens. The controlled study tests $N=1,2,4$; earlier studies extend through
+$N=16$. Widths beyond sixteen are schematic.}
+\label{fig:worker-schedules}
+\end{figure}
 
 \clearpage
 \bibliography{references}
