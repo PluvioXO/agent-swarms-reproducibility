@@ -6,36 +6,6 @@ imported full-benchmark baselines. Study codes below identify the complete
 cell table in the versioned repository and the machine-readable evidence bundle.
 Counts are completed scientific trial keys, not request attempts.
 
-\begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{@{}llrrrr@{}}
-\toprule
-Code & Study & Cal. tasks & Cal. trials & Eval. tasks & Eval. trials\\
-\midrule
-BC-L & BigCodeBench Luna 5.6 & 32 & 1,792 & 32 & 1,728\\
-BC-M & BigCodeBench Muse & 32 & 1,792 & 32 & 1,728\\
-MP-L & MBPP+ Luna 6 & 16 & 448 & 16 & 432\\
-MP-M & MBPP+ Muse & 16 & 448 & 16 & 432\\
-Z-O & ZebraLogic original & 32 & 1,792 & 64 & 3,456\\
-Z-C & ZebraLogic confirmation & 0 & 0 & 300 & 6,600\\
-GC-L & Graph colouring Luna 6 & 0 & 0 & 100 & 1,200\\
-GC-M & Graph colouring Muse & 0 & 0 & 100 & 1,200\\
-CD & Countdown Luna 6 & 0 & 0 & 100 & 1,200\\
-BB & BBEH subset Luna 6 & 0 & 0 & 100 & 1,200\\
-PB & PlanBench subset Luna 6 & 0 & 0 & 100 & 1,200\\
-\midrule
- & Total & & 6,272 & & 20,376\\
-\bottomrule
-\end{tabular}
-\caption{Scientific trial inventory. Every non-MBPP+ cell has two repetitions
-per task; MBPP+ has one. Calibration and evaluation tasks are distinct within
-the original studies. The two graph-colouring studies reuse the same tasks;
-cross-model task counts must not be added as independent samples. Separate
-pilots and smoke checks are not calibration trials in this inventory.}
-\label{tab:app-inventory}
-\end{table}
-
 \subsection{Design and selection}
 The five original grids evaluate widths 1, 2, 4, 8, and 16 at three evaluation
 ceilings, with distinct calibration tasks and shared single-worker controls.
