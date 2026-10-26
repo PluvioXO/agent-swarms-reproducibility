@@ -48,7 +48,7 @@ Each wider evaluation cell is compared with its study's shared single-worker con
 
 The 176 evaluation cells comprise 28 single-worker controls and 148 wider cells. All wider cells use more recorded tokens: 75 have lower accuracy, 24 tie, and 49 improve. These are descriptive configuration counts from unequal grids sharing tasks and controls.
 
-The paper appendix defines the paired task-bootstrap estimands. Repetitions, budgets, and configurations remain within sampled task clusters. Some studies use strata. Saved confidence intervals are present in the JSON metadata; the offline verifier checks point estimates, not those intervals. The original ZebraLogic policy contrast uses a calibration-selected fixed-width comparator, while confirmation uses communicating fixed four at the two higher ceilings. PlanBench's degenerate stratified interval has a separate unstratified sensitivity interval.
+[METHODS.md](METHODS.md) defines the paired task-bootstrap estimands and resampling details. Repetitions, budgets, and configurations remain within sampled task clusters. Some studies use strata. Saved confidence intervals are present in the JSON metadata; the offline verifier checks point estimates, not those intervals. The original ZebraLogic policy contrast uses a calibration-selected fixed-width comparator, while confirmation uses communicating fixed four at the two higher ceilings. PlanBench's degenerate stratified interval has a separate unstratified sensitivity interval.
 
 The separate 8,400-trial controlled study has no rows in this snapshot. It must not be added to these totals or described as verified by this script.
 
