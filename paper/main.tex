@@ -66,10 +66,16 @@ allocation controls for task and architecture dependence
 \citep{snell2024compute,kim2025agents}.
 Controlled widths are $N=1,2,4$ (Figure~\ref{fig:worker-schedules});
 programming/ZebraLogic grids use $N=1,2,4,8,16$, diagnostics $N=1,4$.
+Independent revision uses own drafts; ring revision receives predecessor
+information. The controlled sequential worker uses prior-candidate and
+verifier feedback.
 Task sources: BigCodeBench, MBPP/EvalPlus, ZebraLogic, BBEH, PlanBench \citep{zhuo2024bigcodebench,austin2021mbpp,liu2023evalplus,
 lin2025zebralogic,kazemi2025bbeh,valmeekam2023planbench}.
-Graph/Countdown tasks use deterministic checks; graphs adapt Reasoning Gym \citep{stojanovski2025gym}.
-Paired bootstrap resamples task clusters, stratified where applicable \citep{efron1979bootstrap,field2007clustered}.
+Custom graph/Countdown tasks use deterministic checks; graph generation is inspired by Reasoning Gym \citep{stojanovski2025gym}.
+Complementary studies retain 26,648 trials (6,272 calibration; 20,376 evaluation).
+Paired bootstrap resamples whole tasks with configurations and repetitions
+together, stratified where applicable \citep{efron1979bootstrap,field2007clustered};
+95\% CIs lack cross-study multiplicity correction.
 
 All 148 wider cells (Figure~\ref{fig:evidence}) use more recorded tokens:
 75 score lower, 24 equal, 49 higher. BigCodeBench Muse activation at
@@ -89,6 +95,9 @@ $-6.5$ to $+4.5$ pp. Countdown's independent gains of 9.5--17.0 pp use
 2.77--3.85 times the recorded tokens; its pooled ring effect is $-5.0$ pp
 ($[-8.5,-1.75]$). Our ring protocol is narrower than shared-workspace
 communication \citep{park2026discovery}.
+
+Luna graph colouring's pooled ring effect is $-2.0$ pp ($[-4.0,-0.25]$).
+Seven Muse graph zeros are operational failures, not necessarily reasoning errors.
 
 Resource audits complement failure taxonomies \citep{cemri2025failures}.
 Unknown usage in 97 controlled attempts limits accounting; equal ceilings
