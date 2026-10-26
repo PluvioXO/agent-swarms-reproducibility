@@ -74,7 +74,7 @@
     ],
     "controlled_study_summary_included": true,
     "manuscript_source_package": "paper/agentevalsci2026-source.zip",
-    "manuscript_format": "Self-contained Extended Abstract: two main pages plus references; architecture Figure 1 directly below the abstract, cited Tolstoy quotation on page 1, and results Figure 2 in the body; no appendix; title and abstract preserved."
+    "manuscript_format": "Self-contained Extended Abstract: two main pages plus references; cited Tolstoy quotation and paper-specific adaptation between the abstract and architecture Figure 1 on page 1; results Figure 2 in the body; no appendix; title unchanged, abstract condensed with all content retained."
   },
   "source_path_convention": "Source-file paths identify original workspace inputs, not files promised in this public snapshot. Their hashes record provenance; SHA256SUMS covers the distributed files.",
   "additional_source_document": {

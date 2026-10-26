@@ -16,27 +16,35 @@
 \maketitle
 
 \begin{abstract}
-Evaluating an agent swarm requires distinguishing the effects of increasing
-the total token budget, dividing a fixed ceiling, and changing coordination.
-We examine these comparisons in 8,400 controlled trials on fresh arithmetic
-and graph-colouring tasks. At 4,096 completion tokens per worker, increasing
-independent width from one to four improves accuracy by 16.0 percentage
-points on both families while the total ceiling quadruples. Splitting a
-fixed 4,096-token completion ceiling instead lowers graph accuracy from
-56.0\% to 18.5\%; the arithmetic change is inconclusive. The primary comparisons
-do not establish an accuracy advantage over a sequential control matched
-on scheduled calls and nominal token ceiling. Ring communication provides no
-consistent gain. Eleven complementary scaling studies add 20,376 held-out
-trials across seven task families, including a fresh-task sixteen-worker
-confirmation that does not establish superiority over fixed-four execution.
-Candidate and request audits show that finding a valid answer after an initial
-failure depends on the token allowance. They also reveal incomplete worker
-activation and 97 controlled-study attempts with unknown usage.
-The findings show how resource controls, output selection, and execution
-records qualify claims about agent scaling. They support evaluating specific
-allocation policies; equal realized compute advantages and general scaling
-laws remain unestablished from this work.
+Agent swarm evaluation must distinguish increasing the total token budget,
+dividing a fixed ceiling, and changing coordination. We study these
+comparisons in 8,400 controlled trials on fresh arithmetic and graph-colouring
+tasks. At 4,096 completion tokens per worker, increasing independent width
+from one to four improves accuracy by 16.0 percentage points on both families
+while quadrupling the total ceiling. Splitting a fixed 4,096-token completion
+ceiling instead lowers graph accuracy from 56.0\% to 18.5\%; the arithmetic
+change is inconclusive. Primary comparisons do not establish an accuracy
+advantage over a sequential control matched on scheduled calls and nominal
+token ceiling. Ring communication provides no consistent gain. Eleven
+complementary scaling studies add 20,376 held-out trials across seven task
+families, including a fresh-task sixteen-worker confirmation that does not
+establish superiority over fixed-four execution. Candidate and request
+audits show that valid-answer recovery after initial failure depends on
+token allowance; they also reveal incomplete worker activation and 97
+controlled-study attempts with unknown usage. Resource controls, output
+selection, and execution records thus qualify claims about agent scaling.
+The findings support evaluating specific allocation policies; equal realized
+compute advantages and general scaling laws remain unestablished from this work.
 \end{abstract}
+
+\begin{quote}
+\small
+``All happy families are alike; each unhappy family is unhappy in its own way.''
+---Leo Tolstoy, \emph{Anna Karenina} \citep{tolstoy2014}.
+
+\emph{Adapted to this study:} All successful swarms share a valid outcome;
+unsuccessful swarms fail in different ways.
+\end{quote}
 
 \par\noindent
 \begin{minipage}{\linewidth}
@@ -50,12 +58,6 @@ Larger widths are schematic.}
 \label{fig:worker-schedules}
 \end{minipage}
 \par
-
-\begin{quote}
-\small
-``All happy families are alike; each unhappy family is unhappy in its own way.''
----Leo Tolstoy, \emph{Anna Karenina} \citep{tolstoy2014}.
-\end{quote}
 
 \section{Study and Findings}
 This ongoing study distinguishes sampling, aggregation, and debate

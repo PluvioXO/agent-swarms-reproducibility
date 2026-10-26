@@ -8,7 +8,7 @@ The `reproducibility-v1.3` snapshot covers **eleven complementary studies: 26,64
 
 | File | Purpose |
 | --- | --- |
-| [paper/main.pdf](paper/main.pdf) | Current self-contained extended abstract: two main pages plus references; architecture Figure 1 and cited Tolstoy quotation on page 1, results Figure 2 in the body; no appendix. |
+| [paper/main.pdf](paper/main.pdf) | Current self-contained extended abstract: two main pages plus references; Tolstoy quotation and paper-specific adaptation between the condensed abstract and architecture Figure 1 on page 1, results Figure 2 in the body; no appendix. |
 | [paper/main.tex](paper/main.tex) | Current self-contained extended-abstract source. |
 | [paper/agentevalsci2026-source.zip](paper/agentevalsci2026-source.zip) | Complete editable LaTeX package, including figures, template, fonts, licenses, and offline evidence check. |
 | [docs/METHODS.md](docs/METHODS.md) | Grids, models, task sources, grading, and statistical methods. |
