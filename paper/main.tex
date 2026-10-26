@@ -42,13 +42,20 @@ laws remain unestablished from this work.
 \begin{minipage}{\linewidth}
 \captionsetup{hypcap=false}
 \centering
-\includegraphics[width=\linewidth]{figures/main-evidence.pdf}
-\captionof{figure}{(A) Wider-cell accuracy versus matched-ceiling $N=1$ (148
-configurations sharing tasks). (B) Four-worker effects at two ceilings,
-pooled over revision conditions. (C) Activation at sixteen requested workers.}
-\label{fig:evidence}
+\includegraphics[width=0.9\linewidth]{figures/worker-schedules.png}
+\captionof{figure}{Architectures and allocation: width $N$, per-worker completion
+allowance $d$, total ceiling $B=Nd$. All $2N$ calls execute with $d/2$
+tokens per call. Controlled widths: 1, 2, 4; earlier studies: through 16.
+Larger widths are schematic.}
+\label{fig:worker-schedules}
 \end{minipage}
 \par
+
+\begin{quote}
+\small
+``All happy families are alike; each unhappy family is unhappy in its own way.''
+---Leo Tolstoy, \emph{Anna Karenina} \citep{tolstoy2014}.
+\end{quote}
 
 \section{Study and Findings}
 This ongoing study distinguishes sampling, aggregation, and debate
@@ -89,12 +96,11 @@ policy transfer; general scaling laws remain unestablished. Evidence and protoco
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{figures/worker-schedules.png}
-\caption{Architectures and allocation: width $N$, per-worker completion
-allowance $d$, total ceiling $B=Nd$. All $2N$ calls execute with $d/2$
-tokens per call. Controlled widths: 1, 2, 4; earlier studies: through 16.
-Larger widths are schematic.}
-\label{fig:worker-schedules}
+\includegraphics[width=\linewidth]{figures/main-evidence.pdf}
+\caption{(A) Wider-cell accuracy versus matched-ceiling $N=1$ (148
+configurations sharing tasks). (B) Four-worker effects at two ceilings,
+pooled over revision conditions. (C) Activation at sixteen requested workers.}
+\label{fig:evidence}
 \end{figure}
 
 \clearpage
