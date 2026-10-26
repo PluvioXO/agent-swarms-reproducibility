@@ -39,64 +39,58 @@ laws remain unestablished from this work.
 \end{abstract}
 
 \section{Study and Findings}
-This ongoing research programme studies allocation, participation, and
-selection. Controlled comparisons use widths $N=1,2,4$ (Figure~\ref{fig:worker-schedules}).
-Complementary programming and ZebraLogic grids test $N=1,2,4,8,16$;
-smaller diagnostic grids compare one and four. Tasks cover programming,
-logical reasoning, arithmetic, graph colouring, and planning
-\citep{zhuo2024bigcodebench,liu2023evalplus,lin2025zebralogic,
-kazemi2025bbeh,valmeekam2023planbench}.
-Paired bootstrap intervals retain whole-task clusters and study-specific strata.
+This ongoing study distinguishes sampling, aggregation, and debate
+\citep{brown2024monkeys,wang2023selfconsistency,du2024debate}, with
+allocation controls for task and architecture dependence
+\citep{snell2024compute,kim2025agents}.
+Controlled widths are $N=1,2,4$ (Figure~\ref{fig:worker-schedules});
+programming/ZebraLogic grids use $N=1,2,4,8,16$, diagnostics $N=1,4$.
+Task sources: BigCodeBench, MBPP/EvalPlus, ZebraLogic, BBEH, PlanBench \citep{zhuo2024bigcodebench,austin2021mbpp,liu2023evalplus,
+lin2025zebralogic,kazemi2025bbeh,valmeekam2023planbench}.
+Graph/Countdown tasks use deterministic checks; graphs adapt Reasoning Gym \citep{stojanovski2025gym}.
+Paired bootstrap resamples task clusters, stratified where applicable \citep{efron1979bootstrap,field2007clustered}.
 
-Figure~\ref{fig:evidence} summarizes the complementary results. All 148
-wider cells use more recorded tokens: accuracy is lower in 75, equal in
-24, and higher in 49. At sixteen requested workers, BigCodeBench Muse's
-activation rises from 7.3\% to 45.3\% to 93.5\% across ceilings of 32,768,
-65,536, and 131,072. The transferred ZebraLogic $4/8/16$ policy gains
-$+0.92$ pp over fixed four (95\% interval $[-0.58,2.50]$), establishing
-neither superiority nor equivalence. The controlled fixed-total arithmetic
-estimate is $-24.0$ pp; the comparison remains inconclusive.
+All 148 wider cells (Figure~\ref{fig:evidence}) use more recorded tokens:
+75 score lower, 24 equal, 49 higher. BigCodeBench Muse activation at
+$N=16$ is 7.3\%, 45.3\%, and 93.5\% at ceilings 32,768,
+65,536, and 131,072. ZebraLogic $4/8/16$ minus fixed four is
+$+0.92$ pp (95\% CI $[-0.58,2.50]$), establishing neither superiority
+nor equivalence. Controlled fixed-total arithmetic: $-24.0$ pp, inconclusive.
 
+At $B=32{,}768$, independent BigCodeBench Muse passes 40/64 ($N=1$),
+36/64 ($N=8$), and 14/64 ($N=16$). Programming supplies 96 wider cells,
+81 flat or worse; counts are not benchmark-balanced.
 
-The wider grids reveal failures beyond four workers. For independent
-BigCodeBench Muse at $B=32{,}768$, accuracy is 36/64 at $N=8$, 14/64 at
-$N=16$, and 40/64 at $N=1$. Programming contributes 96 wider cells, 81 flat or
-worse, so the overall configuration count is not benchmark-balanced.
+PlanBench's independent four-worker effect changes from $-95.0$ pp
+($[-98.0,-91.5]$) to $+10.5$ pp ($[6.0,15.5]$) as its ceiling doubles
+(higher-ceiling debit ratio: 4.06). BBEH ring effects change from
+$-6.5$ to $+4.5$ pp. Countdown's independent gains of 9.5--17.0 pp use
+2.77--3.85 times the recorded tokens; its pooled ring effect is $-5.0$ pp
+($[-8.5,-1.75]$). Our ring protocol is narrower than shared-workspace
+communication \citep{park2026discovery}.
 
-PlanBench's independent four-worker effect reverses from $-95.0$ pp
-($[-98.0,-91.5]$) to $+10.5$ pp ($[6.0,15.5]$) as its ceiling doubles;
-the higher-ceiling gain uses 4.06 times the control's retained debit.
-BBEH ring effects similarly change from $-6.5$ to $+4.5$ pp.
-Countdown's independent gains of 9.5--17.0 pp use 2.77--3.85 times the
-recorded tokens; ring revision instead reduces its pooled accuracy by
-$5.0$ pp ($[-8.5,-1.75]$). These results separate search gains from the
-tested communication intervention.
-
-Equal ceilings do not establish equal realized compute. Retained charges
-are incomplete ledgers, including 97 controlled-study attempts with unknown
-usage. Further work concerns resource-matched controls and policy transfer;
-general scaling laws remain unestablished. Evidence and protocols:
+Resource audits complement failure taxonomies \citep{cemri2025failures}.
+Unknown usage in 97 controlled attempts limits accounting; equal ceilings
+do not establish equal compute. Ongoing work tests matched resources and
+policy transfer; general scaling laws remain unestablished. Evidence and protocols:
 \url{https://github.com/PluvioXO/agent-swarms-reproducibility}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figures/main-evidence.pdf}
-\caption{Complementary results. (A) Accuracy at widths 2, 4, 8, and 16 where
-tested, versus matched-ceiling $N=1$; all 148 wider cells use more recorded
-tokens. (B) Four-worker accuracy effects at two ceilings, pooled over revision
-conditions. (C) Activation at sixteen requested workers. Configurations
-share tasks and controls.}
+\caption{(A) Wider-cell accuracy versus matched-ceiling $N=1$ (148
+configurations sharing tasks). (B) Four-worker effects at two ceilings,
+pooled over revision conditions. (C) Activation at sixteen requested workers.}
 \label{fig:evidence}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figures/worker-schedules.png}
-\caption{Worker scaling and controlled schedules. $N$ denotes parallel width,
-$d$ the per-worker completion allowance, and $B=Nd$ the total completion
-ceiling. All controlled schedules execute $2N$ calls, each allowed $d/2$
-completion tokens. The controlled study tests $N=1,2,4$; earlier studies extend through
-$N=16$. Widths beyond sixteen are schematic.}
+\caption{Architectures and allocation: width $N$, per-worker completion
+allowance $d$, total ceiling $B=Nd$. All $2N$ calls execute with $d/2$
+tokens per call. Controlled widths: 1, 2, 4; earlier studies: through 16.
+Larger widths are schematic.}
 \label{fig:worker-schedules}
 \end{figure}
 
