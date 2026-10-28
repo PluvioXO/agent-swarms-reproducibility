@@ -63,7 +63,7 @@ nominal ceilings and retained token debit are distinct.}
 \par
 
 \section{Design and Findings}
-We evaluate worker width as a resource-allocation decision
+We audit worker width as a resource-allocation decision
 \citep{snell2024compute,kim2025agents}.
 \textbf{Design.}
 We analyse subsets of BigCodeBench, MBPP/EvalPlus, ZebraLogic, BBEH and PlanBench
@@ -109,8 +109,9 @@ lack cross-study multiplicity correction. Pilots and smoke checks are excluded.
 Retained debit omits retry expenditure and can include conservative charges
 for unknown usage; equal realized compute is not established.
 
-Ongoing work tests transferred allocation policies across resource divisions,
-with recorded participation and competitive fixed-width controls.\newline
+These cases motivate three checks for scaling claims: execution feasibility,
+realized worker participation and competitive fixed-width baselines. Ongoing
+work tests policy transfer across resource divisions.\newline
 \url{https://github.com/PluvioXO/agent-swarms-reproducibility}.
 
 \par\noindent
