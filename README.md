@@ -2,7 +2,7 @@
 
 Key reproducibility details for **Evaluating Agent Swarms: Token Budgets, Active Workers, and Baseline Choice**, by Maximilian Nicholson and Ayda Yazdani.
 
-The current extended abstract analyses **eleven studies: 26,648 retained trials** (6,272 calibration and 20,376 evaluation), with 316 configuration cells across seven task families. The scientific trials and saved estimates are unchanged from the `reproducibility-v1.3` evidence snapshot. Current manuscript files are on `main`; earlier versions remain in repository history. The paper contributes an empirical audit of execution feasibility, realized worker participation and baseline choice in agent-scaling comparisons.
+The current extended abstract analyses **eleven studies: 26,648 retained trials** (6,272 calibration and 20,376 evaluation), with 316 configuration cells across seven task families. The scientific trials and saved estimates are unchanged from the `reproducibility-v1.3` evidence snapshot. Current manuscript files are on `main`; earlier versions remain in repository history. The audit motivates three reporting checks for agent-scaling claims: stage completion, realized worker participation and competitive fixed-width controls.
 
 ## Contents
 
