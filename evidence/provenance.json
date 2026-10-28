@@ -54,7 +54,7 @@
   "excluded": "Pilot/smoke trials, imported baseline studies, incomplete studies, and rows explicitly marked analysis_included=false. One superseded MBPP+ Muse evaluation row excluded.",
   "tokens": "Original per-trial charged tokens or retained debit; unknown all-attempt expenditure is not imputed.",
   "stage_calls": "Only retained phase records, available in seven later studies; blank for four programming studies.",
-  "availability": "The public reproducibility-v1.3 snapshot supports saved-outcome review of the eleven complementary studies with normalized trials, summaries, full readable evaluation cells, extended methods, seven recorded configuration objects, graph details, provenance, verifier, current paper PDF, readable TeX, and the complete editable LaTeX source package. A separate controlled-study note records supplied protocol and headline results; complete controlled methods/results and trial records are not included. Full experimental archives and raw provider payloads are outside the concise package.",
+  "availability": "The current peer-review package supports saved-outcome review of the eleven reported studies with normalized trials, summaries, readable evaluation cells, concise methods, seven recorded configuration objects, graph details, provenance, verifier, current paper PDF, readable TeX and complete editable LaTeX source. Scientific trial data and saved estimates are unchanged from reproducibility-v1.3. Full experimental archives and raw provider payloads are outside the concise package.",
   "publication": {
     "repository": "https://github.com/PluvioXO/agent-swarms-reproducibility",
     "snapshot_ref": "reproducibility-v1.3",
@@ -62,19 +62,18 @@
     "prepared_on": "2026-10-25",
     "included_scientific_trials": 26648,
     "included_studies": 11,
-    "controlled_study_records_included": false,
     "scope": "Concise peer-review materials and current manuscript sources; full experimental archives, historical reports, and raw provider payloads are not included.",
     "graph_details": "evidence/graph-details.json preserves the shared 100 evaluation graphs, saved witnesses and original hashes, original model-specific attempt accounting, and seven Muse budget-violation trial keys. Extracted from the original combined export without changing trial outcomes.",
     "supporting_documents": [
       "docs/METHODS.md",
       "docs/DATA.md",
       "docs/EVALUATION-CELLS.md",
-      "docs/CONTROLLED-STUDY.md",
       "evidence/study-configs.json"
     ],
-    "controlled_study_summary_included": true,
     "manuscript_source_package": "paper/agentevalsci2026-source.zip",
-    "manuscript_format": "Self-contained Extended Abstract: two main pages plus references; cited Tolstoy quotation and paper-specific adaptation between the abstract and architecture Figure 1 on page 1; results Figure 2 in the body; no appendix; title unchanged, abstract condensed with all content retained."
+    "manuscript_format": "Self-contained Extended Abstract: two main pages plus references; eleven documented studies only; title unchanged, abstract rewritten; cited Tolstoy quotation and paper-specific adaptation precede the vector architecture Figure 1, with a compact vector Figure 2 preserving the original panel data in the body; no appendix.",
+    "manuscript_updated_on": "2026-10-28",
+    "results_figure_source": "figures/main-evidence.tex: compact redrawing from evidence/cell-summary.json; all 148 wider-cell classifications, 10 pooled budget effects and 12 activation points retained."
   },
   "source_path_convention": "Source-file paths identify original workspace inputs, not files promised in this public snapshot. Their hashes record provenance; SHA256SUMS covers the distributed files.",
   "additional_source_document": {

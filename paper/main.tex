@@ -2,6 +2,8 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{aes}
 \usepackage{amsmath,amssymb,tabularx,array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,plotmarks}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 
 \title[Evaluating Agent Swarms]{Evaluating Agent Swarms: Token Budgets, Active Workers, and Baseline Choice}
@@ -9,32 +11,32 @@
 \aesauthor[affil={1}]{Ayda Yazdani}
 \aesaffiliation{1}{University of Bath}
 \aesaffiliation{2}{Amazon}
-\aesemails{\aesemail{mn866@bath.ac.uk}\quad\aesemail{ay582@bath.ac.uk}}
+\aesemails{\{mn866, ay582\}@bath.ac.uk}
 \aeskeywords{Agent evaluation; Multi-agent systems; Test-time compute; Token budgets; Resource allocation; Coordination; Reliability; Reproducibility}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Agent swarm evaluation must distinguish increasing the total token budget,
-dividing a fixed ceiling, and changing coordination. We study these
-comparisons in 8,400 controlled trials on fresh arithmetic and graph-colouring
-tasks. At 4,096 completion tokens per worker, increasing independent width
-from one to four improves accuracy by 16.0 percentage points on both families
-while quadrupling the total ceiling. Splitting a fixed 4,096-token completion
-ceiling instead lowers graph accuracy from 56.0\% to 18.5\%; the arithmetic
-change is inconclusive. Primary comparisons do not establish an accuracy
-advantage over a sequential control matched on scheduled calls and nominal
-token ceiling. Ring communication provides no consistent gain. Eleven
-complementary scaling studies add 20,376 held-out trials across seven task
-families, including a fresh-task sixteen-worker confirmation that does not
-establish superiority over fixed-four execution. Candidate and request
-audits show that valid-answer recovery after initial failure depends on
-token allowance; they also reveal incomplete worker activation and 97
-controlled-study attempts with unknown usage. Resource controls, output
-selection, and execution records thus qualify claims about agent scaling.
-The findings support evaluating specific allocation policies; equal realized
-compute advantages and general scaling laws remain unestablished from this work.
+Adding workers changes token use, worker participation and answer selection
+as well as coordination. We examine eleven scaling studies with 20,376
+evaluation trials across seven task families and 6,272 calibration trials,
+using Luna and Muse Spark at requested widths up to sixteen. All 148 wider
+configurations use more recorded tokens than their matched-ceiling
+single-worker controls: 75 score lower, 24 tie and 49 improve. Budget-dependent
+feasibility is visible on PlanBench: independent four-worker accuracy rises
+from 0\% to 100\% when the ceiling doubles, while truncated stages fall from
+99.94\% to 0.19\%. On BigCodeBench, Muse's sixteen-worker activation ranges
+from 7.3\% to 93.5\% across three ceilings. A fresh 300-task ZebraLogic
+confirmation transfers a communicating 4/8/16 policy without refitting, but
+its advantage over fixed four remains uncertain (+0.92 percentage points;
+95\% CI $[-0.58,2.50]$). Ring revision provides no consistent advantage over
+independent revision. These heterogeneous studies use task-paired analyses,
+study-specific output rules and amended operational protocols. Recorded
+token debit does not measure exact total compute or retry expenditure.
+The findings motivate evaluating allocation policies with execution records
+and competitive controls; equal realized compute advantages and general
+worker-scaling laws remain unestablished.
 \end{abstract}
 
 \begin{quote}
@@ -50,27 +52,34 @@ unsuccessful swarms fail in different ways.
 \begin{minipage}{\linewidth}
 \captionsetup{hypcap=false}
 \centering
-\includegraphics[width=0.9\linewidth]{figures/worker-schedules.png}
-\captionof{figure}{Architectures and allocation: width $N$, per-worker completion
-allowance $d$, total ceiling $B=Nd$. All $2N$ calls execute with $d/2$
-tokens per call. Controlled widths: 1, 2, 4; earlier studies: through 16.
-Larger widths are schematic.}
+\input{figures/worker-schedules.tex}
+\captionof{figure}{Study-specific execution. Independent revision uses its own
+draft; ring revision receives predecessor context. Both conditions share the
+study's output rule. Requested width $N$ can exceed active participation
+when prompt reserves prevent calls. Tested widths are 1/2/4/8/16 where applicable;
+nominal ceilings and retained token debit are distinct.}
 \label{fig:worker-schedules}
 \end{minipage}
 \par
 
-\section{Study and Findings}
+\section{Design and Findings}
 We evaluate worker width as a resource-allocation decision
 \citep{snell2024compute,kim2025agents}.
+\textbf{Design.}
+We analyse subsets of BigCodeBench, MBPP/EvalPlus, ZebraLogic, BBEH and PlanBench
+\citep{zhuo2024bigcodebench,austin2021mbpp,liu2023evalplus,lin2025zebralogic,kazemi2025bbeh,valmeekam2023planbench},
+plus custom graph/Countdown tasks with deterministic checks; graph generation
+is inspired by Reasoning Gym \citep{stojanovski2025gym}.
+Widths reach sixteen in coding and ZebraLogic; later diagnostics test one
+and four. Model versions and routing vary. Figure~\ref{fig:worker-schedules}
+distinguishes output rules; verifier-assisted gains include selection.
+
 \textbf{Budget rules.}
-Independent width $1\to4$ gains 16.0 pp on both families at fixed per-worker
-allowance, quadrupling the total ceiling; fixing the total lowers graph
-accuracy from 56.0\% to 18.5\% (arithmetic: $-24.0$ pp, inconclusive).
-PlanBench's independent four-worker effect reverses from $-95.0$ pp
-($[-98.0,-91.5]$) to $+10.5$ pp ($[6.0,15.5]$) as its ceiling doubles,
-with higher-ceiling debit ratio 4.06. Across 148 complementary wider cells
-(Figure~\ref{fig:evidence}), all use more recorded tokens: 75 score lower,
-24 equal, 49 higher. These configurations share tasks and controls.
+PlanBench's independent $N=4$ effect changes from $-95.0$ pp
+(CI $[-98.0,-91.5]$) to $+10.5$ pp (CI $[6.0,15.5]$) as its ceiling doubles.
+Higher-ceiling debit is 4.06 times the single-worker control; stage truncation
+falls from 99.94\% to 0.19\%. Figure~\ref{fig:evidence} summarizes 148 wider
+cells sharing tasks and controls.
 
 \textbf{Worker participation.}
 BigCodeBench Muse's $N=16$ activation is 7.3\%, 45.3\% and 93.5\% at ceilings
@@ -78,9 +87,10 @@ BigCodeBench Muse's $N=16$ activation is 7.3\%, 45.3\% and 93.5\% at ceilings
 40/64, 36/64 and 14/64. Activation's causal role remains unresolved.
 
 \textbf{Baseline choice.}
-On fresh ZebraLogic tasks, transferred $4/8/16$ minus fixed four averages
-$+0.92$ pp over the two higher ceilings ($[-0.58,2.50]$), establishing neither
-superiority nor equivalence.
+On 300 fresh ZebraLogic puzzles, transferred ring $4/8/16$ minus fixed four
+averages $+0.92$ pp at 65,536/131,072 tokens ($[-0.58,2.50]$), establishing
+neither superiority nor equivalence. At 131,072, sixteen communicating workers score
+90.33\% versus four's 89.67\%, using 3.57 times retained debit.
 
 \textbf{Coordination.}
 Sampling, aggregation and debate are distinct mechanisms
@@ -92,28 +102,26 @@ have narrower scope than shared-workspace communication
 \citep{park2026discovery}; execution audits complement failure taxonomies
 \citep{cemri2025failures}.
 
-\textbf{Design and evidence.}
-Figure~\ref{fig:worker-schedules} defines the controlled schedules and widths. Sources are BigCodeBench,
-MBPP/EvalPlus, ZebraLogic, BBEH and PlanBench
-\citep{zhuo2024bigcodebench,austin2021mbpp,liu2023evalplus,lin2025zebralogic,kazemi2025bbeh,valmeekam2023planbench};
-custom graph/Countdown tasks use deterministic checks, with graph generation
-inspired by Reasoning Gym \citep{stojanovski2025gym}. Complementary trials
-number 26,648: 6,272 calibration and 20,376 evaluation. Task bootstrap retains configurations and repetitions, stratified where applicable \citep{efron1979bootstrap,field2007clustered}; 95\% CIs lack
-cross-study multiplicity correction.
+\textbf{Uncertainty and limits.}
+Task bootstrap retains configurations and repetitions, stratified where
+applicable \citep{efron1979bootstrap,field2007clustered}; reported 95\% CIs
+lack cross-study multiplicity correction. Pilots and smoke checks are excluded.
+Retained debit omits retry expenditure and can include conservative charges
+for unknown usage; equal realized compute is not established.
 
-These results motivate evaluating allocation policies with recorded usage,
-realized participation and competitive controls. Ongoing work tests policy transfer across resource
-divisions; general scaling laws remain unestablished.\newline
+Ongoing work tests transferred allocation policies across resource divisions,
+with recorded participation and competitive fixed-width controls.\newline
 \url{https://github.com/PluvioXO/agent-swarms-reproducibility}.
 
 \par\noindent
 \begin{minipage}{\linewidth}
 \captionsetup{hypcap=false}
 \centering
-\includegraphics[width=\linewidth]{figures/main-evidence.pdf}
-\captionof{figure}{Complementary studies: (A) accuracy of 148 wider cells versus
-matched-ceiling $N=1$; (B) four-worker effects at two
-ceilings, pooled over revision conditions; (C) activation at $N=16$.}
+\input{figures/main-evidence.tex}
+\captionof{figure}{Evaluation results. (A) Wider cells versus matched-ceiling
+$N=1$; $n$ counts configurations. (B) Four-worker effects pooled over revision
+conditions, at ceilings 4/8k for graphs and 8/16k otherwise ($k=1{,}024$ tokens).
+(C) Activation at $N=16$.}
 \label{fig:evidence}
 \end{minipage}
 \par

@@ -1,6 +1,6 @@
-# Methods for the Eleven Complementary Studies
+# Methods for the Eleven Studies
 
-These notes hold the extended protocol and resampling details moved from the paper's appendices. They describe the eleven complementary studies. [CONTROLLED-STUDY.md](CONTROLLED-STUDY.md) separately records the supplied controlled-study summary and its missing information.
+These concise protocol and resampling notes describe the eleven studies analysed in the current self-contained extended abstract.
 
 ## Design and models
 

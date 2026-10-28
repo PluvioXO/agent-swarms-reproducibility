@@ -1,6 +1,6 @@
 # Complete Evaluation Cells
 
-All 176 held-out cells for the eleven complementary studies: 28 shared single-worker controls and 148 wider cells. These are repeated observations of shared tasks, not independent task samples. The separate 8,400-trial controlled study is not included.
+All 176 evaluation cells for the eleven studies: 28 shared single-worker controls and 148 wider cells. These are repeated observations of shared tasks, not independent task samples.
 
 Generated from `evidence/cell-summary.json`; `verify_results.py` checks the underlying counts, mean debits, differences, and ratios against `evidence/trials.csv`. Values below are rounded for display.
 

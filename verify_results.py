@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the eleven complementary studies against their saved trial outcomes."""
+"""Check the eleven reported studies against their saved trial outcomes."""
 
 import csv
 import json
