@@ -60,59 +60,63 @@ Larger widths are schematic.}
 \par
 
 \section{Study and Findings}
-This ongoing study distinguishes sampling, aggregation, and debate
-\citep{brown2024monkeys,wang2023selfconsistency,du2024debate}, with
-allocation controls for task and architecture dependence
+We evaluate worker width as a resource-allocation decision
 \citep{snell2024compute,kim2025agents}.
-Controlled widths are $N=1,2,4$ (Figure~\ref{fig:worker-schedules});
-programming/ZebraLogic grids use $N=1,2,4,8,16$, diagnostics $N=1,4$.
-Independent revision uses own drafts; ring revision receives predecessor
-information. The controlled sequential worker uses prior-candidate and
-verifier feedback.
-Task sources: BigCodeBench, MBPP/EvalPlus, ZebraLogic, BBEH, PlanBench \citep{zhuo2024bigcodebench,austin2021mbpp,liu2023evalplus,
-lin2025zebralogic,kazemi2025bbeh,valmeekam2023planbench}.
-Custom graph/Countdown tasks use deterministic checks; graph generation is inspired by Reasoning Gym \citep{stojanovski2025gym}.
-Complementary studies retain 26,648 trials (6,272 calibration; 20,376 evaluation).
-Paired bootstrap resamples whole tasks with configurations and repetitions
-together, stratified where applicable \citep{efron1979bootstrap,field2007clustered};
-95\% CIs lack cross-study multiplicity correction.
+\textbf{Budget rules.}
+Independent width $1\to4$ gains 16.0 pp on both families at fixed per-worker
+allowance, quadrupling the total ceiling; fixing the total lowers graph
+accuracy from 56.0\% to 18.5\% (arithmetic: $-24.0$ pp, inconclusive).
+PlanBench's independent four-worker effect reverses from $-95.0$ pp
+($[-98.0,-91.5]$) to $+10.5$ pp ($[6.0,15.5]$) as its ceiling doubles,
+with higher-ceiling debit ratio 4.06. Across 148 complementary wider cells
+(Figure~\ref{fig:evidence}), all use more recorded tokens: 75 score lower,
+24 equal, 49 higher. These configurations share tasks and controls.
 
-All 148 wider cells (Figure~\ref{fig:evidence}) use more recorded tokens:
-75 score lower, 24 equal, 49 higher. BigCodeBench Muse activation at
-$N=16$ is 7.3\%, 45.3\%, and 93.5\% at ceilings 32,768,
-65,536, and 131,072. ZebraLogic $4/8/16$ minus fixed four is
-$+0.92$ pp (95\% CI $[-0.58,2.50]$), establishing neither superiority
-nor equivalence. Controlled fixed-total arithmetic: $-24.0$ pp, inconclusive.
+\textbf{Worker participation.}
+BigCodeBench Muse's $N=16$ activation is 7.3\%, 45.3\% and 93.5\% at ceilings
+32,768, 65,536 and 131,072. At 32,768, independent widths 1/8/16 pass
+40/64, 36/64 and 14/64. Activation's causal role remains unresolved.
 
-At $B=32{,}768$, independent BigCodeBench Muse passes 40/64 ($N=1$),
-36/64 ($N=8$), and 14/64 ($N=16$). Programming supplies 96 wider cells,
-81 flat or worse; counts are not benchmark-balanced.
+\textbf{Baseline choice.}
+On fresh ZebraLogic tasks, transferred $4/8/16$ minus fixed four averages
+$+0.92$ pp over the two higher ceilings ($[-0.58,2.50]$), establishing neither
+superiority nor equivalence.
 
-PlanBench's independent four-worker effect changes from $-95.0$ pp
-($[-98.0,-91.5]$) to $+10.5$ pp ($[6.0,15.5]$) as its ceiling doubles
-(higher-ceiling debit ratio: 4.06). BBEH ring effects change from
-$-6.5$ to $+4.5$ pp. Countdown's independent gains of 9.5--17.0 pp use
-2.77--3.85 times the recorded tokens; its pooled ring effect is $-5.0$ pp
-($[-8.5,-1.75]$). Our ring protocol is narrower than shared-workspace
-communication \citep{park2026discovery}.
+\textbf{Coordination.}
+Sampling, aggregation and debate are distinct mechanisms
+\citep{brown2024monkeys,wang2023selfconsistency,du2024debate}.
+Countdown's independent gains of 9.5--17.0 pp use 2.77--3.85 times recorded tokens;
+its pooled ring effect is $-5.0$ pp ($[-8.5,-1.75]$). Seven Muse graph zeros are
+operational failures, not necessarily reasoning errors. These ring results
+have narrower scope than shared-workspace communication
+\citep{park2026discovery}; execution audits complement failure taxonomies
+\citep{cemri2025failures}.
 
-Luna graph colouring's pooled ring effect is $-2.0$ pp ($[-4.0,-0.25]$).
-Seven Muse graph zeros are operational failures, not necessarily reasoning errors.
+\textbf{Design and evidence.}
+Figure~\ref{fig:worker-schedules} defines the controlled schedules and widths. Sources are BigCodeBench,
+MBPP/EvalPlus, ZebraLogic, BBEH and PlanBench
+\citep{zhuo2024bigcodebench,austin2021mbpp,liu2023evalplus,lin2025zebralogic,kazemi2025bbeh,valmeekam2023planbench};
+custom graph/Countdown tasks use deterministic checks, with graph generation
+inspired by Reasoning Gym \citep{stojanovski2025gym}. Complementary trials
+number 26,648: 6,272 calibration and 20,376 evaluation. Task bootstrap retains configurations and repetitions, stratified where applicable \citep{efron1979bootstrap,field2007clustered}; 95\% CIs lack
+cross-study multiplicity correction.
 
-Resource audits complement failure taxonomies \citep{cemri2025failures}.
-Unknown usage in 97 controlled attempts limits accounting; equal ceilings
-do not establish equal compute. Ongoing work tests matched resources and
-policy transfer; general scaling laws remain unestablished. Evidence and protocols:
+These results motivate evaluating allocation policies with recorded usage,
+realized participation and competitive controls. Ongoing work tests policy transfer across resource
+divisions; general scaling laws remain unestablished.\newline
 \url{https://github.com/PluvioXO/agent-swarms-reproducibility}.
 
-\begin{figure}[htbp]
+\par\noindent
+\begin{minipage}{\linewidth}
+\captionsetup{hypcap=false}
 \centering
 \includegraphics[width=\linewidth]{figures/main-evidence.pdf}
-\caption{(A) Wider-cell accuracy versus matched-ceiling $N=1$ (148
-configurations sharing tasks). (B) Four-worker effects at two ceilings,
-pooled over revision conditions. (C) Activation at sixteen requested workers.}
+\captionof{figure}{Complementary studies: (A) accuracy of 148 wider cells versus
+matched-ceiling $N=1$; (B) four-worker effects at two
+ceilings, pooled over revision conditions; (C) activation at $N=16$.}
 \label{fig:evidence}
-\end{figure}
+\end{minipage}
+\par
 
 \clearpage
 \bibliography{references}
